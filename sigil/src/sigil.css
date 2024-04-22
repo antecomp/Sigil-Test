@@ -11,6 +11,15 @@
 	stroke: #111;
 }
 
+.finished text {
+	fill: #111;
+}
+
+.rune + text, .clickedRune + text {
+	pointer-events: none;
+	font-size: 2rem;
+}
+
 .rune:hover {
 	stroke-dasharray: 100;
 	stroke-dashoffset: 20;

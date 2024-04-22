@@ -1,6 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import './sigil.css'
 
+const runeMap = ["⍫", "☸", "⏆", "⎉", "⏣", "␥", "☀", "☍"];
+
 const Sigil = ({radius}) => {
 
 	// main circle vars
@@ -57,8 +59,8 @@ const Sigil = ({radius}) => {
 		const y = cy + radius * Math.sin(angle);
 
 		runeCircles.push(
+			<g key={i}>
 			<circle 
-			key={i} 
 			cx={x} cy={y} 
 			r={radius / 4} 
 			stroke="white" 
@@ -68,6 +70,8 @@ const Sigil = ({radius}) => {
 			// if already clicked, change cursor to default to indicate we cant click it again.
 			className={clickedRunes.some(rune => rune.key === i) ? 'clickedRune' : 'rune'}
 			/>
+			<text x={x} y={y} textAnchor='middle' dy=".35em" fill="white">{runeMap[i]}</text>
+			</g>
 		);
 	}
 
