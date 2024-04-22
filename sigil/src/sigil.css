@@ -11,13 +11,10 @@
 	stroke: #111;
 }
 
-<<<<<<< HEAD
 .finished text {
 	fill: #111;
 }
 
-=======
->>>>>>> a3cb8996777379987618fab65781cdb4de554031
 .rune + text, .clickedRune + text {
 	pointer-events: none;
 	font-size: 2rem;
