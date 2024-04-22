@@ -16,6 +16,15 @@ const Sigil = ({radius}) => {
 	const [lines, setLines] = useState([]);
 
 
+
+	// for the pixelate test
+	const [pixelate, setPixelate] = useState(false);
+
+	const togglePixelate = () => {
+		setPixelate(!pixelate);
+	}
+
+
 	// state for finished
 	const [finished, setFinished] = useState(false);
 
@@ -78,7 +87,18 @@ const Sigil = ({radius}) => {
 
 	return (
 		<>
-		<svg width="500" height="500" className={finished ? 'finished' : ''}>
+<svg>
+  <filter id="pixelate" x="0" y="0">
+    <feFlood x="1" y="1" height="1" width="1"/>
+    <feComposite width="2" height="2"/>
+    <feTile result="a"/>
+    <feComposite in="SourceGraphic" in2="a" operator="in"/>
+    <feMorphology operator="dilate" radius="1"/>
+  </filter>
+</svg>
+
+
+		<svg width="500" height="500" className={finished ? 'finished' : ''} filter={pixelate ? 'url(#pixelate)' : ''}>
 			<circle cx="250" cy="250" r={radius} stroke="white" strokeWidth="2" fill="none" />
 			{runeCircles};
 			{lines.map((line,index) => (
@@ -86,7 +106,8 @@ const Sigil = ({radius}) => {
 			))}
 		</svg>
 		<br />
-		<button onClick={handleReset}>Reset</button>
+		<button onClick={handleReset}>Reset</button> <br />
+		<button onClick={togglePixelate}>Pixelate</button>
 		</>
 	)
 }
