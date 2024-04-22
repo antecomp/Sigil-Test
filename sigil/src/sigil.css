@@ -1,0 +1,31 @@
+.rune {
+	cursor: pointer;
+}
+
+.clickedRune {
+	cursor: default;
+	stroke-width: 4;
+}
+
+.finished circle {
+	stroke: #111;
+}
+
+.rune:hover {
+	stroke-dasharray: 100;
+	stroke-dashoffset: 20;
+	stroke-width: 3;
+	animation: spin 1s linear infinite;
+	transform-box: border-box;
+    transform-origin: center;
+}
+
+@keyframes spin {
+	0% {
+		rotate: 0deg;
+	}
+
+	100% {
+		rotate: 360deg;
+	}
+}
