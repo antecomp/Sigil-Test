@@ -87,7 +87,7 @@ const Sigil = ({radius}) => {
 
 	return (
 		<>
-<svg>
+<svg style={{position:"absolute", top:0, pointerEvents:"none", width:0, height:0}}>
   <filter id="pixelate" x="0" y="0">
     <feFlood x="1" y="1" height="1" width="1"/>
     <feComposite width="2" height="2"/>
@@ -98,7 +98,7 @@ const Sigil = ({radius}) => {
 </svg>
 
 
-		<svg width="500" height="500" className={finished ? 'finished' : ''} filter={pixelate ? 'url(#pixelate)' : ''}>
+		<svg width="500" height="500" className={`runeBuilder ${finished ? 'finished' : ''}`} filter={pixelate ? 'url(#pixelate)' : ''}>
 			<circle cx="250" cy="250" r={radius} stroke="white" strokeWidth="2" fill="none" />
 			{runeCircles};
 			{lines.map((line,index) => (

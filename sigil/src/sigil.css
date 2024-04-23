@@ -8,11 +8,13 @@
 }
 
 .finished circle {
-	stroke: #111;
+	stroke: #000000;
+	transition: stroke 0.5s ease-in;
 }
 
 .finished text {
-	fill: #111;
+	fill: #000000;
+	transition: fill 0.5s ease-in;
 }
 
 .rune + text, .clickedRune + text {
@@ -21,10 +23,10 @@
 }
 
 .rune:hover {
-	stroke-dasharray: 100;
+	/*stroke-dasharray: 100; */
 	stroke-dashoffset: 20;
 	stroke-width: 3;
-	animation: spin 1s linear infinite;
+	animation: spin 1s linear infinite, open 0.5s ease-in forwards;
 	transform-box: border-box;
     transform-origin: center;
 }
@@ -35,6 +37,28 @@
 	}
 
 	100% {
-		rotate: 360deg;
+		rotate: -360deg;
 	}
+}
+
+@keyframes open {
+	0% {
+		stroke-dasharray: 180;
+	}
+	100% {
+		stroke-dasharray: 100;
+	}
+}
+
+.runeBuilder line {
+	stroke-dasharray: 1000;
+	stroke-dashoffset: 1000;
+	animation: drawLine 0.5s ease-in forwards;
+}
+
+@keyframes drawLine {
+	to {
+		stroke-dashoffset: 0;
+	}
+	
 }
