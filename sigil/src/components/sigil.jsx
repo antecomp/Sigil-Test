@@ -36,16 +36,6 @@ const Sigil = ({radius, runeData}) => {
 		)
 	}
 
-
-
-	// for the pixelate test
-	const [pixelate, setPixelate] = useState(false);
-
-	const togglePixelate = () => {
-		setPixelate(!pixelate);
-	}
-
-
 	// state for finished
 	const [finished, setFinished] = useState(false);
 
@@ -130,18 +120,7 @@ const Sigil = ({radius, runeData}) => {
 		<>
 			{toolTipTarget && <Tooltip offset={{ x: 10, y: 10 }} delay={"0.75s"}> {toolTipTarget} </Tooltip>}
 
-			<svg style={{ position: "absolute", top: 0, pointerEvents: "none", width: 0, height: 0 }}>
-				<filter id="pixelate" x="0" y="0">
-					<feFlood x="1" y="1" height="1" width="1" />
-					<feComposite width="2" height="2" />
-					<feTile result="a" />
-					<feComposite in="SourceGraphic" in2="a" operator="in" />
-					<feMorphology operator="dilate" radius="1" />
-				</filter>
-			</svg>
-
-
-			<svg width="500" height="500" className={`runeBuilder ${finished ? 'finished' : ''}`} filter={pixelate ? 'url(#pixelate)' : ''}>
+			<svg width="500" height="500" className={`runeBuilder ${finished ? 'finished' : ''}`}>
 				<circle cx="250" cy="250" r={radius} stroke="white" strokeWidth="2" fill="none" />
 				{runeCircles};
 				{lines.map((line, index) => (
@@ -150,8 +129,6 @@ const Sigil = ({radius, runeData}) => {
 			</svg>
 			<br />
 			<button onClick={handleReset}>Reset</button> <br />
-			<button onClick={togglePixelate}>Pixelate</button>
-
 		</>
 	)
 }
