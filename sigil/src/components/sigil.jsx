@@ -1,8 +1,8 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import '../styles/sigil.css'
 import { Tooltip } from './Tooltip';
 
-const Sigil = ({radius, runeData}) => {
+const Sigil = ({ radius, runeData }) => {
 
 	// main circle vars
 	const numRunes = runeData.maxNumRunes;
@@ -15,6 +15,10 @@ const Sigil = ({radius, runeData}) => {
 	const [clickedRunes, setClickedRunes] = useState([]);
 	const [lines, setLines] = useState([]);
 
+	// state for finished, triggered when we've clicked our max runes, triggers fade out anim
+	// and will eventually be used for action triggers.
+	const [finished, setFinished] = useState(false);
+
 
 	// for tooltip
 	const [toolTipTarget, setTooltipTarget] = useState(null);
@@ -26,95 +30,97 @@ const Sigil = ({radius, runeData}) => {
 	const generateRuneTooltip = (rune) => {
 		return (
 			<>
-			<h3>
-				{rune.name}
-			</h3>
-			<p>
-				{rune.desc}
-			</p>
+				<h3>
+					{rune.name}
+				</h3>
+				<p>
+					{rune.desc}
+				</p>
 			</>
 		)
 	}
 
-	// state for finished
-	const [finished, setFinished] = useState(false);
-
 	const handleClick = (key, x, y) => {
 
 		// Guard Clause: do nothing if we already clicked this rune
-		if(clickedRunes.some(rune => rune.key === key)) {
+		if (clickedRunes.some(rune => rune.key === key)) {
 			return;
 		}
 
 		// Gaurd clause, prevent clicking if we have the finished flag.
 		// Hopefully we'll have something more elegant in the real deal but this is fine for demo purposes.
-		if(finished) return;
+		if (finished) return;
 
 		//console.log(`Clicked rune ${key} at (${x},${y})`)
-		const clickedRune = {key, x, y};
+		const clickedRune = { key, x, y };
 		setClickedRunes(prevClickedRunes => [...prevClickedRunes, clickedRune])
 	}
 
 
 	// called only when our clickedRunes array updates, i.e when we click a rune.
 	useEffect(() => {
-		if(clickedRunes.length > 1) {
+		if (clickedRunes.length > 1) {
 			const lastClickedRune = clickedRunes[clickedRunes.length - 2];
 			const currentClickedRune = clickedRunes[clickedRunes.length - 1];
-			const newLine = 	{x1: lastClickedRune.x, y1: lastClickedRune.y, 
-								x2: currentClickedRune.x, y2: currentClickedRune.y};
+			const newLine = {
+				x1: lastClickedRune.x, y1: lastClickedRune.y,
+				x2: currentClickedRune.x, y2: currentClickedRune.y
+			};
 			setLines(prevLines => [...prevLines, newLine]);
 		}
 
-
-		//setFinished(clickedRunes.length == numRunes);
-		setFinished(clickedRunes.length == runesPerMove);
+		if(clickedRunes.length == runesPerMove) {
+			markFinishedAndSubmit();
+		}
 
 	}, [clickedRunes]);
 
+	// eventually this will take some prop the parent passes that we can use to bubble our sigil pick up to the combat handler.
+	const markFinishedAndSubmit = () => {
+		setFinished(true);
+		setTooltipTarget(null); // hide tooltips when we hide the rune selector.
 
-	// edge case : hovering over the finishing rune still triggers tooltip
-	// THIS IS TERRIBLE BECAUSE USEEFFECT IS TRIGGERED MORE OFTEN THAN THIS, NEED
-	// SOME SUPLIMENTAL FUNCTION TO MARK THE SHIT AS FINISHED AND RUN A BUNCH OF CODE THEN LOL.
-	useEffect(() => {
-		setTooltipTarget(null);
-	}, [finished])
-
+		clickedRunes.forEach((rune) => {
+			console.log(runeData.runeMap[rune.key]);
+		})
+	}
 
 	const handleReset = () => {
 		setClickedRunes([]);
 		setLines([]);
-		setFinished(false); // likely unneeded because the useEffect would eval to this anyway
+		// likely unneeded because the useEffect would eval to this anyway
+		setFinished(false); 
 	}
 
 
-	for(let i = 0; i < numRunes; i++) {
+	for (let i = 0; i < numRunes; i++) {
 		const angle = (Math.PI * 2 * i) / numRunes;
 		const x = cx + radius * Math.cos(angle);
 		const y = cy + radius * Math.sin(angle);
 
 		runeCircles.push(
-			<g key={i}>
-			<circle 
-			cx={x} cy={y} 
-			r={radius / 4} 
-			stroke="white" 
-			strokeWidth="2" 
-			fill="black" 
-			onClick={() => handleClick(i, x, y)}
-			// if already clicked, change cursor to default to indicate we cant click it again.
-			className={clickedRunes.some(rune => rune.key === i) ? 'clickedRune' : 'rune'}
+			<g key={`rune-${i}`}>
+				<circle
+					cx={x} cy={y}
+					r={radius / 4}
+					stroke="white"
+					strokeWidth="2"
+					fill="black"
+					onClick={() => handleClick(i, x, y)}
+					// if already clicked, change cursor to default to indicate we cant click it again.
+					className={clickedRunes.some(rune => rune.key === i) ? 'clickedRune' : 'rune'}
 
 
-			// tooltip code
-			onMouseEnter={() => !finished ? setTooltipTarget(generateRuneTooltip(runeData.runeMap[i])) : setTooltipTarget(null)}
-			onMouseLeave={() => setTooltipTarget(null)}
-			/>
-			<text x={x} y={y} textAnchor='middle' dy=".35em" fill="white">{runeData.runeMap[i].symbol}</text>
+					// tooltip code
+					onMouseEnter={() => !finished ? setTooltipTarget(generateRuneTooltip(runeData.runeMap[i])) : setTooltipTarget(null)}
+					onMouseLeave={() => setTooltipTarget(null)}
+				/>
+				<text x={x} y={y} textAnchor='middle' dy=".35em" fill="white">{runeData.runeMap[i].symbol}</text>
 			</g>
 		);
 	}
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	return (
 		<>
