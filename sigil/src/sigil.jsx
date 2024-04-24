@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import './sigil.css'
 import { Tooltip } from './Tooltip';
-import { click } from '@testing-library/user-event/dist/click';
 
 const runeMap = ["⍫", "☸", "⏆", "⎉", "⏣", "␥", "☀", "☍"];
 const descJSXMap = [
