@@ -2,46 +2,11 @@ import React, {useState, useEffect} from 'react';
 import '../styles/sigil.css'
 import { Tooltip } from './Tooltip';
 
-const runeMap = ["⍫", "☸", "⏆", "⎉", "⏣", "␥", "☀", "☍"];
-const descJSXMap = [
-	<>
-		<h3>DEFEND</h3> <p>REDUCE DAMAGE TAKEN, NEGATE BASIC ATTACK DAMAGE</p>
-	</>,
-
-	<>
-		<h3>OBSERVE</h3> <p>PREDICT DÆMON ATTACK ON NEXT TURN. LEAVES VULNERABLE TO ATTACK</p>
-	</>,
-
-	<>
-		<h3>ATTACK</h3> <p>LUNGE AT ENEMY. CANNOT BREAK DEFENSE</p>
-	</>,
-
-	<>
-		<h3>PREPARE</h3> <p>APPLY VULERABILITY, INCREASES EFFECTIVENESS OF FOLLOWING RUNE</p>
-	</>,
-
-	<>
-		<h3>PROLONG</h3> <p>REPEAT THE PREVIOUS RUNE</p>
-	</>,
-
-	<>
-		<h3>EVADE</h3> <p>CHANCE FOR ALL DAMAGE NEGATION, INCREASES DAMAGE ON EVASION FAIL</p>
-	</>,
-
-	<>
-		<h3>HEAL</h3> <p>RECOVER LOST HEALTH, LEAVES VULNERABLE TO ATTACKS</p>
-	</>,
-
-	<>
-		<h3>CALL FAMILIAR</h3> <p>SUMMON FAMILIAR OR USE SUMMONED FAMILIARS ABILITY</p>
-	</>
-]
-
-const Sigil = ({radius}) => {
+const Sigil = ({radius, runeData}) => {
 
 	// main circle vars
-	const numRunes = 8;
-	const runesPerMove = 5; // how many runes do we pick before marking as "finished"
+	const numRunes = runeData.maxNumRunes;
+	const runesPerMove = runeData.runesPerMove; // how many runes do we pick before marking as "finished"
 	const runeCircles = [];
 	const cx = 250;
 	const cy = 250;
@@ -57,6 +22,19 @@ const Sigil = ({radius}) => {
 	// YOU SHOULD BE ABLE TO SET THE TARGET STATE SETTER AS A CALLBACK INTO THIS FUNCTION 
 	// FOR PORTABILITY.
 
+
+	const generateRuneTooltip = (rune) => {
+		return (
+			<>
+			<h3>
+				{rune.name}
+			</h3>
+			<p>
+				{rune.desc}
+			</p>
+			</>
+		)
+	}
 
 
 
@@ -139,10 +117,10 @@ const Sigil = ({radius}) => {
 
 
 			// tooltip code
-			onMouseEnter={() => !finished ? setTooltipTarget(descJSXMap[i]) : setTooltipTarget(null)}
+			onMouseEnter={() => !finished ? setTooltipTarget(generateRuneTooltip(runeData.runeMap[i])) : setTooltipTarget(null)}
 			onMouseLeave={() => setTooltipTarget(null)}
 			/>
-			<text x={x} y={y} textAnchor='middle' dy=".35em" fill="white">{runeMap[i]}</text>
+			<text x={x} y={y} textAnchor='middle' dy=".35em" fill="white">{runeData.runeMap[i].symbol}</text>
 			</g>
 		);
 	}

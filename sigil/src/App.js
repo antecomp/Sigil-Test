@@ -1,10 +1,12 @@
 import './styles/App.css';
 import Sigil from './components/sigil';
+import { runeData } from './static/runeData';
 
 function App() {
   return (
     <div className="App" id='window'>
-     <Sigil radius={100} />
+      {/* will be different in the future, esp if I have a party system but this is how youll pass what runes to use to that comp. */}
+     <Sigil radius={100} runeData={runeData.player} />
     </div>
   );
 }
