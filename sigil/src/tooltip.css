@@ -1,0 +1,44 @@
+.tooltip {
+	position: fixed;
+	top: 0;
+	left: 0;
+	pointer-events: none;
+	background-color: black;
+	color: white;
+	padding: 5px;
+	border: double 3px white;
+	max-width: 25ch;
+	outline: 4px solid black;
+	visibility: hidden; /* default, show triggered by code */
+
+
+}
+
+
+/* this is fucking evil and bad, using CSS to add delay for tooltip to appear :^) */
+.shownTooltip {
+	visibility: visible;
+	opacity: 0;
+	animation: delayedVis 0.5s forwards;
+	animation-delay: var(--delay);
+}
+@keyframes delayedVis {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+
+/* just for the sigil example, youll wanna standardize this I imagine */
+h3 {
+	margin: 0;
+	letter-spacing: 0.25ch;
+	color: yellow;
+}
+
+p {
+	margin: 0;
+}

@@ -4,7 +4,7 @@ import Sigil from './sigil';
 
 function App() {
   return (
-    <div className="App">
+    <div className="App" id='window'>
      <Sigil radius={100} />
     </div>
   );

@@ -5,6 +5,7 @@
 
 body {
   background-color: black;
+  font-family: "basis33"; /* locally installed, import l8r lol */
 }
 
 .App-logo {
