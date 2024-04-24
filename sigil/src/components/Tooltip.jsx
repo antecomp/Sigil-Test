@@ -2,7 +2,7 @@
 import {useRef, useEffect} from 'react';
 import { createPortal } from 'react-dom';
 import cls from 'classnames'
-import './tooltip.css'
+import '../styles/tooltip.css'
 
 export const Tooltip = ({children, className, offset = {x: 0, y:0}, delay}) => {
 	const element = useRef({});
