@@ -1,6 +1,5 @@
-import logo from './logo.svg';
-import './App.css';
-import Sigil from './sigil';
+import './styles/App.css';
+import Sigil from './components/sigil';
 
 function App() {
   return (

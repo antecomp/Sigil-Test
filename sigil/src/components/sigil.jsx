@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import './sigil.css'
+import '../styles/sigil.css'
 import { Tooltip } from './Tooltip';
 
 const runeMap = ["⍫", "☸", "⏆", "⎉", "⏣", "␥", "☀", "☍"];
