@@ -8,8 +8,9 @@ const Sigil = ({ radius, runeData }) => {
 	const numRunes = runeData.maxNumRunes;
 	const runesPerMove = runeData.runesPerMove; // how many runes do we pick before marking as "finished"
 	const runeCircles = [];
-	const cx = 250;
-	const cy = 250;
+	const svgDim = radius * 2.5;
+	const cx = svgDim / 2;
+	const cy = svgDim / 2;
 
 	// vars for the line drawing stuff
 	const [clickedRunes, setClickedRunes] = useState([]);
@@ -122,11 +123,11 @@ const Sigil = ({ radius, runeData }) => {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	return (
-		<>
+		<div className='sigilCon'>
 			{toolTipTarget && <Tooltip offset={{ x: 10, y: 10 }} delay={"0.75s"}> {toolTipTarget} </Tooltip>}
 
-			<svg width="500" height="500" className={`runeBuilder ${finished ? 'finished' : ''}`}>
-				<circle cx="250" cy="250" r={radius} stroke="white" fill="none" />
+			<svg width={svgDim} height={svgDim} className={`runeBuilder ${finished ? 'finished' : ''}`}>
+				<circle cx={cx} cy={cy} r={radius} stroke="white" fill="none" />
 				{runeCircles};
 				{lines.map((line, index) => (
 					<line key={index} x1={line.x1} y1={line.y1} x2={line.x2} y2={line.y2} stroke="white" strokeWidth={2} />
@@ -134,7 +135,7 @@ const Sigil = ({ radius, runeData }) => {
 			</svg>
 			<br />
 			<button onClick={handleReset}>Reset</button> <br />
-		</>
+		</div>
 	)
 }
 

@@ -1,0 +1,21 @@
+.BattleCon {
+	display: grid;
+	grid-template-columns: auto auto;
+	grid-gap: 3px;
+	width: max-content;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.left {
+	display: grid;
+	grid-template-columns: auto;
+	border: double 3px white;
+	width: 400px;
+}
+
+.left .placeHolderDeCon {
+	height: 500px;
+}
