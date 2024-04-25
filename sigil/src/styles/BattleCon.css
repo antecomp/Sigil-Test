@@ -6,16 +6,28 @@
 	position: absolute;
 	left: 50%;
 	top: 50%;
-	transform: translate(-50%, -50%);
+	/* Nefarious snap to pixel grid method */
+	transform: translate(calc(-50% + 0.5px), calc(-50% + 0.222225px));
 }
 
 .left {
 	display: grid;
 	grid-template-columns: auto;
-	border: double 3px white;
 	width: 400px;
+	border-bottom: none;
+}
+
+.placeHolderDeCon {
+	border: 3px double white;
+	border-bottom: none;
 }
 
 .left .placeHolderDeCon {
 	height: 500px;
+}
+
+
+.bottomPanel .sigilCon {
+	position: relative;
+	top: -45% /* eventually make this a calc to account for height of "reset" button or whatever */
 }

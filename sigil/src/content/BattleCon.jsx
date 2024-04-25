@@ -20,7 +20,9 @@ const BattleCon = ({battleData}) => {
 		<div className="BattleCon">
 			<div className="left">
 				<div className="placeHolderDeCon"></div>
-				<Sigil radius={90} runeData={runeData.player} />
+				<div className="bottomPanel">
+					<Sigil radius={90} runeData={runeData.player} />
+				</div>
 			</div>
 			<div className="right">		
 				<StatusTerm messages={testMessages} />
