@@ -115,7 +115,7 @@ const Sigil = ({ radius, runeData }) => {
 					onMouseEnter={() => !finished ? setTooltipTarget(generateRuneTooltip(runeData.runeMap[i])) : setTooltipTarget(null)}
 					onMouseLeave={() => setTooltipTarget(null)}
 				/>
-				<text x={x} y={y} textAnchor='middle' dy=".35em" fill="white">{runeData.runeMap[i].symbol}</text>
+				<text x={x} y={y} textAnchor='middle' dy=".35em" dx=".1em" fill="white">{runeData.runeMap[i].symbol}</text>
 			</g>
 		);
 	}
