@@ -27,7 +27,11 @@
 }
 
 
-.bottomPanel .sigilCon {
-	position: relative;
-	top: -45% /* eventually make this a calc to account for height of "reset" button or whatever */
+.bottomPanel {
+	border-top: solid 1px white;
+	height: 64px;
+}
+
+.bottomPanel .runeBuilder {
+	transform: translateY(-50%);
 }

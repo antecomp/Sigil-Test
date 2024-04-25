@@ -123,7 +123,7 @@ const Sigil = ({ radius, runeData }) => {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	return (
-		<div className='sigilCon'>
+		<>
 			{toolTipTarget && <Tooltip offset={{ x: 10, y: 10 }} delay={"0.75s"}> {toolTipTarget} </Tooltip>}
 
 			<svg width={svgDim} height={svgDim} className={`runeBuilder ${finished ? 'finished' : ''}`}>
@@ -135,7 +135,7 @@ const Sigil = ({ radius, runeData }) => {
 			</svg>
 			<br />
 			<button onClick={handleReset}>Reset</button> <br />
-		</div>
+		</>
 	)
 }
 
