@@ -6,7 +6,7 @@ function App() {
   return (
     <div className="App" id='window'>
       {/* will be different in the future, esp if I have a party system but this is how youll pass what runes to use to that comp. */}
-     <Sigil radius={100} runeData={runeData.player} />
+     <Sigil radius={75} runeData={runeData.player} />
     </div>
   );
 }

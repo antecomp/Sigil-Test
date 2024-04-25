@@ -1,4 +1,15 @@
-.rune {
+@font-face {
+	font-family: "pixl-wd";
+	src: url('../assets/fonts/pixelated-wingdings.ttf');
+}
+
+/* I didnt notice any change but who knows
+svg {
+	shape-rendering: crispEdges;
+}
+*/
+
+.rune, .rune text {
 	cursor: pointer;
 }
 
@@ -23,7 +34,8 @@
 
 .rune + text, .clickedRune + text {
 	pointer-events: none;
-	font-size: 2rem;
+	/* font-size: 2rem; */
+	font-family: "pixl-wd";
 }
 
 .rune:hover {
