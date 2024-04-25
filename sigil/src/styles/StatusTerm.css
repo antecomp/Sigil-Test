@@ -1,0 +1,27 @@
+@font-face {
+	font-family: "term-font";
+	src: url(../assets/fonts/Piksel-JAGa.ttf);
+}
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+.StatusTerm {
+	background-color: black;
+	border: solid white 1px;
+	color: white;
+	width: 400px;
+	text-align: left;
+}
+
+.titlebar {
+	width: 100%;
+	height: 4px;
+	border-bottom: solid white 1px;
+}
+
+.StatusOutput {
+	padding: 1ch;
+}
