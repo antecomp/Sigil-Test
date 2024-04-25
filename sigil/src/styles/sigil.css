@@ -3,11 +3,11 @@
 	src: url('../assets/fonts/pixelated-wingdings.ttf');
 }
 
-/* I didnt notice any change but who knows
+/* make it look like shit on purpose lol */
 svg {
 	shape-rendering: crispEdges;
 }
-*/
+
 
 .rune, .rune text {
 	cursor: pointer;
@@ -15,7 +15,7 @@ svg {
 
 .clickedRune {
 	cursor: default;
-	stroke-width: 4;
+	stroke-width: 2;
 }
 
 .finished circle {
@@ -41,9 +41,9 @@ svg {
 .rune:hover {
 	/*stroke-dasharray: 100; */
 	stroke-dashoffset: 20;
-	stroke-width: 3;
+	stroke-width: 2;
 	animation: spin 1s linear infinite, open 0.5s ease-in forwards;
-	transform-box: border-box;
+	transform-box: fill-box; /* firefox hates every other one lol */
     transform-origin: center;
 }
 

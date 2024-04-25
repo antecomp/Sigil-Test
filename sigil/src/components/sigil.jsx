@@ -104,7 +104,6 @@ const Sigil = ({ radius, runeData }) => {
 					cx={x} cy={y}
 					r={radius / 4}
 					stroke="white"
-					strokeWidth="2"
 					fill="black"
 					onClick={() => handleClick(i, x, y)}
 					// if already clicked, change cursor to default to indicate we cant click it again.
@@ -127,7 +126,7 @@ const Sigil = ({ radius, runeData }) => {
 			{toolTipTarget && <Tooltip offset={{ x: 10, y: 10 }} delay={"0.75s"}> {toolTipTarget} </Tooltip>}
 
 			<svg width="500" height="500" className={`runeBuilder ${finished ? 'finished' : ''}`}>
-				<circle cx="250" cy="250" r={radius} stroke="white" strokeWidth="2" fill="none" />
+				<circle cx="250" cy="250" r={radius} stroke="white" fill="none" />
 				{runeCircles};
 				{lines.map((line, index) => (
 					<line key={index} x1={line.x1} y1={line.y1} x2={line.x2} y2={line.y2} stroke="white" strokeWidth={2} />
