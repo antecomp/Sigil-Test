@@ -1,0 +1,14 @@
+.meter {
+	display: inline-flex;
+}
+  
+  .bar {
+	width: 2px;
+	height: 8px;
+	background-color: gray;
+	margin: 0 1px;
+  }
+  
+  .filled {
+	background-color: white;
+  }

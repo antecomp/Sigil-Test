@@ -8,6 +8,7 @@ import PlaceholderDaemonImg from '../artwork/placeholderdaemon.png'
 import labeldemarc from '../assets/ui/labeldemarc.png'
 import TXRX from '../assets/ui/TXRX.gif'
 import TooltipWrapper from "../components/TooltipWrapper.jsx";
+import SideStatus from "../components/SideStatus.jsx";
 
 const BattleCon = ({battleData}) => {
 
@@ -92,6 +93,7 @@ const BattleCon = ({battleData}) => {
 			</div>
 			<div className="right">		
 				<StatusTerm messages={testMessages} />
+				<SideStatus phtnksStb={0.75} dmStb={0.33} />
 			</div>
 		</div>
 	)

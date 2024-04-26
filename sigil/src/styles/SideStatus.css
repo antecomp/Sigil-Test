@@ -1,0 +1,62 @@
+@font-face {
+	font-family: "erth";
+	src: url(../assets/fonts/earthbound-beginnings.ttf);
+}
+
+.SideStatus {
+	font-family: "erth";
+	font-size: 8px;
+	color: white;
+	text-align: left;
+	border-left: 1px solid white;
+	border-bottom: 1px solid white;
+	padding-left: 7px;
+	padding-top: 3px;
+	margin-top: 2px;
+	width: 70%;
+	position: relative;
+	/* makes the psuedo-element position absolute work lol */
+}
+
+.SideStatus .sid {
+	padding: 2px 0;
+}
+
+.SideStatus div {
+	padding: 0;
+	margin-bottom: 3px;
+}
+
+.SideStatus .stb,
+.SideStatus .sid {
+	position: relative;
+}
+
+.SideStatus .stb::before, .SideStatus .sid::before {
+	content: "";
+    height: 1px;
+    background: white;
+    width: 5px;
+    position: absolute;
+    left: -7px;
+    top: 25%;
+}
+
+.SideStatus .sid::before { /* idk why its different */
+	top: 40%;
+}
+
+.SideStatus hr {
+	border-style: solid;
+	border-bottom: none;
+	margin-bottom: 8px;
+	margin-top: 3px;
+	margin-left: -5px;
+}
+
+.SideStatus::after {
+	content: url('../assets/ui/single_corner_left.png');
+	position: absolute;
+	left: -1px;
+	bottom: -1px;
+}
