@@ -63,8 +63,40 @@
 
 
 .bottomPanel {
-	border-top: solid 1px white;
-	height: 64px;
+    border: double 3px white;
+    height: 64px;
+    outline: solid black 1px;
+    color: white;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+}
+
+.bottomPanel .br, .bottomPanel .bl {
+	font-family: "teeny";
+	font-size: 5px;
+	padding: 5px;
+}
+
+
+/* kinda hacky but whatever */
+.bottomPanel .bl::before {
+	content: '';
+	height: 1px;
+	width: calc(var(--leftwidth) - 8px);
+	background: white;
+	position: absolute;
+	left: 4px;
+	translate: 0 -4px;
+}
+
+.bottomPanel .br {
+	text-align: right;
+	padding-right: 0;
+}
+
+.bottomPanel .bl {
+	text-align: left;
+	padding-left: 3px;
 }
 
 .bottomPanel .runeBuilder {
