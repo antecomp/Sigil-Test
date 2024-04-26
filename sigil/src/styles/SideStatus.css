@@ -1,21 +1,15 @@
-@font-face {
-	font-family: "erth";
-	src: url(../assets/fonts/earthbound-beginnings.ttf);
-}
-
 .SideStatus {
 	font-family: "erth";
 	font-size: 8px;
 	color: white;
 	text-align: left;
-	border-left: 1px solid white;
-	border-bottom: 1px solid white;
+	border-left: 1px solid var(--fgc);
+	border-bottom: 1px solid var(--fgc);
 	padding-left: 7px;
 	padding-top: 3px;
 	margin-top: 2px;
 	width: 70%;
-	position: relative;
-	/* makes the psuedo-element position absolute work lol */
+	position: relative; /* makes the psuedo-element position absolute work lol */
 }
 
 .SideStatus .sid {
@@ -35,7 +29,7 @@
 .SideStatus .stb::before, .SideStatus .sid::before {
 	content: "";
     height: 1px;
-    background: white;
+    background: var(--fgc);
     width: 5px;
     position: absolute;
     left: -7px;
@@ -60,5 +54,5 @@
 	left: -1px;
 	bottom: -3px;
 	z-index: 2;
-	border-bottom: 1px black solid;
+	border-bottom: 1px var(--outlinec) solid;
 }

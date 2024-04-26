@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import '../styles/sigil.css'
-import { Tooltip } from './Tooltip';
+import 'styles/sigil.css'
+import { Tooltip } from 'components/util/Tooltip';
 
 const Sigil = ({ radius, runeData }) => {
 

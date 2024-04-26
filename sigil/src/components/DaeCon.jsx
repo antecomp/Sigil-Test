@@ -2,7 +2,7 @@ import React from "react";
 
 const DaeCon = ({img}) => {
 	return(
-		<div className="placeHolderDeCon">
+		<div className="DaeCon">
 			<img src={img} alt="CRITICAL DAEMON RENDER FAIL" />
 		</div>
 	)

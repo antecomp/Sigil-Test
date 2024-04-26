@@ -1,0 +1,48 @@
+/* Base.css should include all the fonts, standard vars, colourscheme vars etc. All other CSS files should reference the vars, fonts, etc defined here. */
+
+/* FONTS */
+@font-face {
+	font-family: 'main';
+	src: url(../assets/fonts/Piksel-JAGa.ttf);
+}
+
+@font-face {
+	font-family: 'teeny';
+	src: url(../assets/fonts/TeenyTinyPixls-o2zo.ttf);
+}
+
+@font-face {
+	font-family: 'enoch';
+	src: url(../assets/fonts/NVEnochian.otf);
+}
+
+@font-face {
+	font-family: 'erth';
+	src: url(../assets/fonts/earthbound-beginnings.ttf);
+}
+
+@font-face {
+	font-family: "pixl-wd";
+	src: url('../assets/fonts/pixelated-wingdings.ttf');
+}
+
+
+/* VARS */
+:root {
+	--fgc: white;
+	--bgc: black;
+	--empc: yellow;
+	--altfgc: #444;
+	--outlinec: black; /* I dont imagine this changing but I dont want it to just be bgc */
+}
+
+/* DRY slop */
+* {
+	padding: 0;
+	margin: 0;
+}
+
+body {
+	background-color: var(--bgc);
+	font-family: "main"; /* to serve as a "default" */
+}
