@@ -7,6 +7,7 @@ import Daecon from "../components/DaeCon.jsx";
 import PlaceholderDaemonImg from '../artwork/placeholderdaemon.png'
 import labeldemarc from '../assets/ui/labeldemarc.png'
 import TXRX from '../assets/ui/TXRX.gif'
+import TooltipWrapper from "../components/TooltipWrapper.jsx";
 
 const BattleCon = ({battleData}) => {
 
@@ -21,6 +22,14 @@ const BattleCon = ({battleData}) => {
 	]
 
 	const placeholderEnochDaemonName = "ANTHOUSAI"
+	const placeHolderDaemonName = "ANTHOUSAI"
+	const placeHolderDaemonDesc = <>
+		<h3>ANTHOUSAI</h3>
+		<p>
+			TYPE: NYMPH <hr/>
+			Would you uproot a Hyacinth in the name of your God?
+		</p>
+	</>
 
 	return (
 		<div className="BattleCon">
@@ -30,7 +39,7 @@ const BattleCon = ({battleData}) => {
 				<div className="bottomPanel">
 					<div className="bl">
 						DAEMONVEIL FAILURE MANUAL ENGAGEMENT PROTOCOL ONLINE <br /><br />
-						ENTITY.ID: PLACEHOLDER
+						ENTITY.ID: <TooltipWrapper text={placeHolderDaemonDesc}>{placeHolderDaemonName}</TooltipWrapper>
 					</div>
 					<div className="sigilcon">
 						<Sigil radius={90} runeData={runeData.player} />

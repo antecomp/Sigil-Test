@@ -15,7 +15,7 @@
 	width: max-content;
 	position: absolute;
 	left: 50%;
-	top: 50%;
+	top: 40%;
 	/* Nefarious snap to pixel grid method */
 	transform: translate(calc(-50%), calc(-50%));
 
@@ -97,6 +97,7 @@
 .bottomPanel .bl {
 	text-align: left;
 	padding-left: 3px;
+	cursor: default;
 }
 
 .bottomPanel .runeBuilder {
