@@ -127,16 +127,13 @@ const Sigil = ({ radius, runeData }) => {
 			{toolTipTarget && <Tooltip offset={{ x: 10, y: 10 }} delay={"0.75s"}> {toolTipTarget} </Tooltip>}
 
 			<svg width={svgDim} height={svgDim} className={`runeBuilder ${finished ? 'finished' : ''}`}>
-				<circle cx={cx} cy={cy} r={radius * 1.35} stroke="none" fill="black" /> {/* bg circle to mask shit to black */}
+				<circle cx={cx} cy={cy} r={radius * 1.35} stroke="none" fill="black" onClick={handleReset} className='SigilBgCircle' /> {/* bg circle to mask shit to black */}
 				<circle cx={cx} cy={cy} r={radius} stroke="white" fill="none" />
 				{runeCircles};
 				{lines.map((line, index) => (
 					<line key={index} x1={line.x1} y1={line.y1} x2={line.x2} y2={line.y2} stroke="white" strokeWidth={2} />
 				))}
 			</svg>
-
-			<br />
-			<button onClick={handleReset} className='resetButton'>Reset</button> <br />
 		</>
 	)
 }
