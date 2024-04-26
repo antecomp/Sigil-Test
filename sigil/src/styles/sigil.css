@@ -18,7 +18,7 @@ svg {
 	stroke-width: 2;
 }
 
-.finished circle {
+/* .finished circle {
 	stroke: #000000;
 	transition: stroke 0.5s ease-in;
 }
@@ -26,6 +26,11 @@ svg {
 .finished text {
 	fill: #000000;
 	transition: fill 0.5s ease-in;
+} */
+
+.finished .rune, .finished  .clickedRune, .finished text{
+	opacity: 0;
+	transition: opacity 0.5s ease-in;
 }
 
 .finished .rune {
@@ -70,6 +75,7 @@ svg {
 	stroke-dasharray: 1000;
 	stroke-dashoffset: 1000;
 	animation: drawLine 0.5s ease-in forwards;
+	pointer-events: none;
 }
 
 @keyframes drawLine {
@@ -77,4 +83,13 @@ svg {
 		stroke-dashoffset: 0;
 	}
 	
+}
+
+.resetButton {
+	position: relative;
+	top: -25%;
+}
+
+.SigilBgCircle {
+	/* cursor: pointer; */
 }

@@ -1,0 +1,10 @@
+container / gameManager parent
+  #enochian titlebar
+  leftUI (Comp)
+    Enemy Screen (comp)
+    Sigil (comp)
+    #enemy details
+    # RX/TX decoration
+  rightUI (comp)
+    Terminal (comp)
+    Status (comp)
