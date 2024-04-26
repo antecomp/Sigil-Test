@@ -12,9 +12,9 @@
 	background-color: black;
 	border: solid white 1px;
 	color: white;
-	width: 400px;
+	width: 295px;
 	text-align: left;
-	height: 200px;
+	height: 165px;
 }
 
 .titlebar {
@@ -23,6 +23,10 @@
 	border-bottom: solid white 1px;
 }
 
+.titlebar img {
+	display: block;
+}
+
 .StatusOutput {
-	padding: 1ch;
+	padding: 4px;
 }

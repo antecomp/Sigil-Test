@@ -8,7 +8,7 @@ const Sigil = ({ radius, runeData }) => {
 	const numRunes = runeData.maxNumRunes;
 	const runesPerMove = runeData.runesPerMove; // how many runes do we pick before marking as "finished"
 	const runeCircles = [];
-	const svgDim = radius * 2.5;
+	const svgDim = radius * 2.7; /* *2.5 to fit perfectly, making it larger for the outer masking circle to work */
 	const cx = svgDim / 2;
 	const cy = svgDim / 2;
 
@@ -127,14 +127,16 @@ const Sigil = ({ radius, runeData }) => {
 			{toolTipTarget && <Tooltip offset={{ x: 10, y: 10 }} delay={"0.75s"}> {toolTipTarget} </Tooltip>}
 
 			<svg width={svgDim} height={svgDim} className={`runeBuilder ${finished ? 'finished' : ''}`}>
+				<circle cx={cx} cy={cy} r={radius * 1.35} stroke="none" fill="black" /> {/* bg circle to mask shit to black */}
 				<circle cx={cx} cy={cy} r={radius} stroke="white" fill="none" />
 				{runeCircles};
 				{lines.map((line, index) => (
 					<line key={index} x1={line.x1} y1={line.y1} x2={line.x2} y2={line.y2} stroke="white" strokeWidth={2} />
 				))}
 			</svg>
+
 			<br />
-			<button onClick={handleReset}>Reset</button> <br />
+			<button onClick={handleReset} className='resetButton'>Reset</button> <br />
 		</>
 	)
 }
