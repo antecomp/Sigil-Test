@@ -54,9 +54,10 @@ const Sigil = ({ radius, runeData }) => {
 		setClickedRunes(prevClickedRunes => [...prevClickedRunes, clickedRune])
 	}
 
-
 	// called only when our clickedRunes array updates, i.e when we click a rune.
-	useEffect(() => {
+	// Note to self: Async nature of setClickedRunes means this *has* to be in a useEffect hook, bundling it with the function above
+	// with cause the length/other checks to be on old state because it hasnt updated/rendered yet.
+	useEffect(function drawLines() {
 		if (clickedRunes.length > 1) {
 			const lastClickedRune = clickedRunes[clickedRunes.length - 2];
 			const currentClickedRune = clickedRunes[clickedRunes.length - 1];
