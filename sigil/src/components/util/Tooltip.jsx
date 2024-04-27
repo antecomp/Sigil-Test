@@ -12,7 +12,6 @@ export const Tooltip = ({children, className, offset = {x: 0, y:0}, delay}) => {
 			if (element.current) {
 				const x = e.clientX + offset.x, y = e.clientY + offset.y;
 				element.current.style.transform = `translate(${x}px, ${y}px)`;
-				//element.current.style.visibility = 'visible';
 				element.current.classList.add('shownTooltip')
 			}
 		}

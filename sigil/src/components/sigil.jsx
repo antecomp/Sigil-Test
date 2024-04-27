@@ -21,11 +21,8 @@ const Sigil = ({ radius, runeData }) => {
 	const [finished, setFinished] = useState(false);
 
 
-	// for tooltip
+	// for manual tooltip
 	const [toolTipTarget, setTooltipTarget] = useState(null);
-	// TODO, MOVE THE TOOLTIP STUFF / SETTERS TO TRIGGER SHOW TO GENERAL UTILITY JS FILE
-	// YOU SHOULD BE ABLE TO SET THE TARGET STATE SETTER AS A CALLBACK INTO THIS FUNCTION 
-	// FOR PORTABILITY.
 
 
 	const generateRuneTooltip = (rune) => {
