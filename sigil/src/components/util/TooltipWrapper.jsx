@@ -1,6 +1,5 @@
 import React, {useState} from "react";
 import { Tooltip } from "./Tooltip";
-import '../styles/TooltipWrapper.css'
 /* For use in 99% of cases, otherwise manually add tooltip event listener code like you did in sigil */
 
 

@@ -1,7 +1,7 @@
 import React from "react";
-import '../styles/Meter.css'
-import '../styles/SideStatus.css'
-import TooltipWrapper from "./TooltipWrapper";
+import 'styles/Meter.css'
+import 'styles/SideStatus.css'
+import TooltipWrapper from "components/util/TooltipWrapper";
 
 /* stability numbers should be <= 1, a health percentage, soley visual. This shit should never track the actual health state for obvious reasons */
 const SideStatus = ({phtnksStb, dmStb}) => {

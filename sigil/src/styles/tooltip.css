@@ -11,8 +11,6 @@
 	hyphens: auto;
 	outline: 4px solid black;
 	visibility: hidden; /* default, show triggered by code */
-
-
 }
 
 
@@ -34,12 +32,15 @@
 
 
 /* just for the sigil example, youll wanna standardize this I imagine */
-h3 {
-	margin: 0;
+.tooltip h3 {
 	letter-spacing: 0.25ch;
-	color: yellow;
+	color: var(--empc);
 }
 
-p {
-	margin: 0;
+
+/* for the wrapper */
+.hasTooltip {
+	text-decoration:underline;
+	text-decoration-style: dotted;
+	cursor:help;
 }
