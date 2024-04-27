@@ -1,4 +1,3 @@
-import Sigil from '~/components/sigil';
 import '~/styles/Base.css'
 import BattleCon from '~/content/BattleCon';
 
