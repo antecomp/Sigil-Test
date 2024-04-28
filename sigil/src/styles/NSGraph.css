@@ -1,16 +1,9 @@
-.NSGraphCon {
-	border: var(--fgc) double 3px;
-	width: 100%;
-	height: 100%;
-	overflow: auto;
-	background: url(../assets/ui/NSTracerBG.png);
-}
-
 .NSTracerWindow {
 	width: 650px;
 	height: 450px;
 	border: var(--fgc) double 3px;
 	background: url(../assets/ui/NSTracerBG.png);
+	background-position: 12px;
 	overflow: hidden;
 	position: relative; /* needed for button position to work, may need fix when draggable implemented */
 }
