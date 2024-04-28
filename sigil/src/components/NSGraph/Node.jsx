@@ -62,9 +62,8 @@ const Node = ({id, children, depth, expandedNodes, setExpandedNodes, dx = 1, dy 
 					r={radius}
 					cx={coords.x}
 					cy={coords.y}
-					onClick={handleClick}
-					/* stroke="var(--fgc)" */
-					/*fill={children ? 'blue' : 'black'} */
+					/* onClick={handleClick} */
+					onMouseDown={handleClick}
 					className={nodeClass}
 				/>
 				{expandedLeaf &&
