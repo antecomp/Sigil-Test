@@ -54,8 +54,8 @@ const SideStatus = ({phtnksStb, dmStb}) => {
 			<div className="sid">USR VI-ID: dv8:8a3</div>
 			<div className="sid">RCP VI-ID: ---:---</div>
 			<hr />
-			<div class="stb"><TooltipWrapper text={phtdesc}>PHTNKS STBLTY</TooltipWrapper> <Meter level={phtnksStb * 20}/> </div>
-			<div class="stb"><TooltipWrapper text={dmdesc}>DMVEIL STBLTY</TooltipWrapper> <Meter level={dmStb * 20}/> </div>
+			<div className="stb"><TooltipWrapper text={phtdesc}>PHTNKS STBLTY</TooltipWrapper> <Meter level={phtnksStb * 20}/> </div>
+			<div className="stb"><TooltipWrapper text={dmdesc}>DMVEIL STBLTY</TooltipWrapper> <Meter level={dmStb * 20}/> </div>
 		</div>
 	)
 }
