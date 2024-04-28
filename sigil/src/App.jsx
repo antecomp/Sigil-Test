@@ -3,10 +3,11 @@ import BattleCon from '~/content/BattleCon';
 import {root} from '~/static/NSMap';
 import Node from '~/content/Node';
 import { useEffect, useState } from 'react';
+import NSGraph from './content/NSGraph';
 
 function App() {
 
-// Localstorage Retreive Test, Hopefully move to a state management save system thing????
+/* // Localstorage Retreive Test, Hopefully move to a state management save system thing????
   const [expandedNodes, setExpandedNodes] = useState(() => {
     const saveExpandedNodes = JSON.parse(localStorage.getItem("expandedNodes")) || [];
     return saveExpandedNodes;
@@ -18,7 +19,7 @@ function App() {
 	useEffect(() => {
 		console.log("localStorage Save called")
 		localStorage.setItem("expandedNodes", JSON.stringify(expandedNodes));
-	}, [expandedNodes])
+	}, [expandedNodes]) */
 
 
 
@@ -26,9 +27,11 @@ function App() {
     <div className="App" id='window'>
 
     
-    <BattleCon/>
+    {/* <BattleCon/> */}
 
-    <Node depth={0} expandedNodes={expandedNodes} setExpandedNodes={setExpandedNodes} {...root}  />
+    {/* <Node depth={0} expandedNodes={expandedNodes} setExpandedNodes={setExpandedNodes} {...root}  /> */}
+
+    <NSGraph />
 
     </div>
   );
