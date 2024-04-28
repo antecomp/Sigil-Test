@@ -1,3 +1,4 @@
+import classNames from "classnames";
 import React, {useState, useEffect, useCallback} from "react";
 
 const Node = ({id, children, depth, expandedNodes, setExpandedNodes, dx = 1, dy = 1, parentCoords = {x:0, y:0}}) => {
@@ -33,7 +34,14 @@ const Node = ({id, children, depth, expandedNodes, setExpandedNodes, dx = 1, dy 
 		linePoints.y1 = parentCoords.y
 		linePoints.x1 = parentCoords.x + Math.sign(dx)*radius
 	}
-	
+
+	const expandedLeaf = isNodeExpanded && (children == null);
+
+	const nodeClass = classNames({
+		'mapNode': true,
+		'visitedNode': isNodeExpanded,
+		'expandedLeaf': expandedLeaf
+	})
 
 	return (
 		<>
@@ -43,21 +51,27 @@ const Node = ({id, children, depth, expandedNodes, setExpandedNodes, dx = 1, dy 
 				x2={linePoints.x2} 
 				y1={linePoints.y1} 
 				y2={linePoints.y2} 
-				stroke="var(--fgc)" 
+				/* stroke="var(--fgc)" */
 				strokeWidth={1} 
+				className={nodeClass}
 			/>
 		}
-			<circle 
-				className="mapNode"
-				r={radius}
-				cx={coords.x}
-				cy={coords.y}
-				onClick={handleClick}
-				stroke="var(--fgc)"
-				/*fill={children ? 'blue' : 'black'} */
-
-			/>
-			{isNodeExpanded && (children ?? []).map((nodeProps) => 
+			<g>
+				<circle 
+					/* className="mapNode" */
+					r={radius}
+					cx={coords.x}
+					cy={coords.y}
+					onClick={handleClick}
+					/* stroke="var(--fgc)" */
+					/*fill={children ? 'blue' : 'black'} */
+					className={nodeClass}
+				/>
+				{expandedLeaf &&
+					<text className="exlText" x={coords.x} y={coords.y + radius + 10} textAnchor="middle">NO ROUTE</text>
+				}
+			</g>
+			{isNodeExpanded && (children ?? []).map((nodeProps) =>
 				<Node
 					key={`id - ${Math.random()}`}
 					depth={nextDepth}

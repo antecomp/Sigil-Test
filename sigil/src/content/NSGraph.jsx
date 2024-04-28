@@ -13,7 +13,7 @@ const NSGraph = () => {
 	  
 		return (
 		  <div className="ZoomTools">
-			<button onClick={() => resetTransform()}>Fucking reset</button>
+			<button onClick={() => resetTransform()}>y</button>
 		  </div>
 		);
 	  };
@@ -42,6 +42,7 @@ const NSGraph = () => {
 				 initialScale={1}
 				 initialPositionX={0}
 				 initialPositionY={0}
+				 doubleClick={{disabled: true}}
 			>
 				<Controls />
 				<TransformComponent>

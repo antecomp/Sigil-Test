@@ -21,3 +21,49 @@
 	right: 0px;
 	z-index: 2; /* WHY */
 }
+
+
+.NSTracerWindow svg {
+	shape-rendering: revert;
+}
+
+.ZoomTools button {
+	font-family: 'pixl-wd';
+	background: none;
+	color: var(--fgc);
+	border: none;
+	font-size: 32px;
+	padding-top: 4px;
+}
+
+.mapNode {
+	stroke: var(--altfgc);
+}
+
+.visitedNode {
+	stroke: var(--fgc);
+}
+
+line.mapNode {
+	stroke: #00000000;
+}
+
+line.visitedNode {
+	stroke: var(--fgc);
+}
+
+circle.mapNode:hover {
+	cursor: pointer;
+	filter: drop-shadow(0 0 3px var(--fgc));
+	stroke: var(--fgc);
+}
+
+circle.expandedLeaf {
+	stroke: red;
+}
+
+.exlText {
+	fill: red;
+	font-family: 'teeny';
+	font-size: 6px;
+}
