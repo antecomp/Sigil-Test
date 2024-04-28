@@ -17,14 +17,14 @@ const Node = ({id, children, depth, expandedNodes, setExpandedNodes}) => {
 	return (
 		<div className="mapNode">
 			<h5 onClick={handleClick}>{id}</h5>
-			<h6>{depth}</h6>
+			<h6>{depth} {children ? 'V' : 'LEAF'}</h6>
 			<div style={{marginLeft:20}}>
 				{isNodeExpanded && (children ?? []).map((nodeProps) => 
 					<Node
 						key={`id - ${Math.random()}`}
 						depth={nextDepth}
 						expandedNodes={expandedNodes}
-						setExpandedNodes={setExpandedNodes} // mmm prop drilling....
+						setExpandedNodes={setExpandedNodes} // mmm recursion + prop drilling....
 						{...nodeProps} // this spread op is only covering whats inside "children" in NSMap object.
 					/>
 				)}
