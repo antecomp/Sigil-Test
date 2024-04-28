@@ -1,0 +1,23 @@
+.NSGraphCon {
+	border: var(--fgc) double 3px;
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	background: url(../assets/ui/NSTracerBG.png);
+}
+
+.NSTracerWindow {
+	width: 650px;
+	height: 450px;
+	border: var(--fgc) double 3px;
+	background: url(../assets/ui/NSTracerBG.png);
+	overflow: hidden;
+	position: relative; /* needed for button position to work, may need fix when draggable implemented */
+}
+
+.ZoomTools {
+	position: absolute;
+	top: 0;
+	right: 0px;
+	z-index: 2; /* WHY */
+}

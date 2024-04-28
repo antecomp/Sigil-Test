@@ -1,13 +1,29 @@
 import React, {useState, useEffect, useCallback} from "react";
 import {root} from '~/static/NSMap';
+import '~/styles/NSGraph.css'
+
+import { TransformWrapper, TransformComponent, useControls } from "react-zoom-pan-pinch";
 
 const NSGraph = () => {
+
+
+	const Controls = () => {
+		const {resetTransform } = useControls();
+	  
+		return (
+		  <div className="ZoomTools">
+			<button onClick={() => resetTransform()}>Fucking reset</button>
+		  </div>
+		);
+	  };
+
+
 
 	const Node = ({id, children, depth, expandedNodes, setExpandedNodes, dx = 1, dy = 1, parentCoords = {x:0, y:0}}) => {
 
 		// move to a seperate consts file at some point I think. Propping these feels stupid tho
 		const radius = 10;
-		const offsetMultipler = 35;
+		const offsetMultipler = 32;
 
 		const handleClick = useCallback(() => {
 			if(expandedNodes.includes(id)) {
@@ -40,15 +56,25 @@ const NSGraph = () => {
 	
 		return (
 			<>
-			{!(id == "local.user") && <line x1={linePoints.x1} x2={linePoints.x2} y1={linePoints.y1} y2={linePoints.y2} stroke="white" strokeWidth={1} />}
+			{!(id == "local.user") && 
+				<line 
+					x1={linePoints.x1} 
+					x2={linePoints.x2} 
+					y1={linePoints.y1} 
+					y2={linePoints.y2} 
+					stroke="var(--fgc)" 
+					strokeWidth={1} 
+				/>
+			}
 				<circle 
 					className="mapNode"
 					r={radius}
 					cx={coords.x}
 					cy={coords.y}
 					onClick={handleClick}
-					stroke="white"
-					fill={children ? 'blue' : 'black'}
+					stroke="var(--fgc)"
+					/*fill={children ? 'blue' : 'black'} */
+
 				/>
 				{isNodeExpanded && (children ?? []).map((nodeProps) => 
 					<Node
@@ -83,10 +109,19 @@ const NSGraph = () => {
 
 
 	return (
-		<div className="NSGraphCon">
-			<svg className="NSGraph" width={500} height={500}>
-				<Node depth={0} expandedNodes={expandedNodes} setExpandedNodes={setExpandedNodes} {...root}  />
-			</svg>
+		<div className="NSTracerWindow">
+			<TransformWrapper
+				 initialScale={1}
+				 initialPositionX={0}
+				 initialPositionY={0}
+			>
+				<Controls />
+				<TransformComponent>
+					<svg className="NSGraph" width={7650} height={450}>
+						<Node depth={0} expandedNodes={expandedNodes} setExpandedNodes={setExpandedNodes} {...root}  />
+					</svg>
+				</TransformComponent>
+			</TransformWrapper>
 		</div>
 	)
 
