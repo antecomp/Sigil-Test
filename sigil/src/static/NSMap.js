@@ -1,37 +1,42 @@
 export const root = {
 	id: "local.user",
-	dx: 20,
-	dy: 20,
+	dx: 5,
+	dy: 2,
 	children: [
 		{
 			id: "Slopzone",
-			dx: 50,
+			dx: 2,
 			dy: 0,
 		},
 		{
 			id: "Soyzone",
-			dx: 100,
-			dy: 0,
+			dx: 1,
+			dy: 2,
 			children: [
 				{
-					id: "cum"
+					id: "cum",
+					dy: 1,
+					dx: 3
 				},
 				{
-					id: "megacum"
+					id: "megacum",
+					dy: 2.5,
 				},
 				{
-					id: "slopSEX"
+					id: "slopSEX",
+					dy: 3,
+					dx: 0
 				}
 			]
 		},
 		{
 			id: "Larpzone",
-			dx: 0, 
-			dy: 0,
+			dx: -2,
+			dy: 3,
 			children: [{
 				id: "Hyperlarp",
 				dx: 0,
-				dy: 0,
+				dy: 1,
 				children: [{
 					id: "Larpa"
 				}]

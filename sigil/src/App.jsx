@@ -29,8 +29,6 @@ function App() {
     
     {/* <BattleCon/> */}
 
-    {/* <Node depth={0} expandedNodes={expandedNodes} setExpandedNodes={setExpandedNodes} {...root}  /> */}
-
     <NSGraph />
 
     </div>
