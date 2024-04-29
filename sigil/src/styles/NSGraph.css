@@ -38,11 +38,13 @@
 }
 
 line.mapNode {
-	stroke: #00000000;
+	stroke: var(--altfgc);
+	stroke-dasharray: 5;
 }
 
 line.visitedNode {
 	stroke: var(--fgc);
+	stroke-dasharray: 0;
 }
 
 circle.mapNode:hover {
