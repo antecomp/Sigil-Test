@@ -8,24 +8,17 @@ import ConnectionPrompt from "~/components/NSGraph/ConnectionPrompt";
 
 const NSGraph = () => {
 
-	const acceptTest = () => {
-		console.log('accept')
-	}
-
-	const denyTest = () => {
-		console.log('deny')
-	}
+	const [nodeAcceptMethod, setNodeAcceptMethod] = useState(null)
+	const [nodeDenyMethod, setNodeDenyMethod] = useState(null)
+	const [showConfirmation, setShowConfirmation] = useState('');
+	const [confDetails, setConfDetails] = useState({})
 
 
-	const [nodeAcceptMethod, setNodeAcceptMethod] = useState(() => acceptTest)
-	const [nodeDenyMethod, setNodeDenyMethod] = useState(() => denyTest)
-	const [showConfirmation, setShowConfirmation] = useState(true);
-
-
-	const triggerNewConfirmation = (acceptMethod, denyMethod) => {
+	const triggerNewConfirmation = (acceptMethod, denyMethod, dest, details) => {
 		setNodeAcceptMethod(() => acceptMethod);
 		setNodeDenyMethod(() => denyMethod);
-		setShowConfirmation(true);
+		setShowConfirmation(dest);
+		setConfDetails(details);
 	}
 
 
@@ -65,6 +58,8 @@ const NSGraph = () => {
 					acceptMethod={nodeAcceptMethod}
 					denyMethod={nodeDenyMethod}
 					showStateSttr={setShowConfirmation}
+					dest={showConfirmation}
+					details={confDetails}
 				/>
 			}
 

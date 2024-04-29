@@ -16,11 +16,16 @@ const Node = ({id, children, depth, expandedNodes, setExpandedNodes, dx = 1, dy 
 		console.log(`deny called from ${id}`)
 	}
 
+	// Will based on the state of the node, inherit from the object???
+	const details = {
+		prompt: "LOW DAEMON SATURATION DETECTED. SAFE TO PROCEED"
+	}
+
 	const handleClick = useCallback(() => {
 		if(expandedNodes.includes(id)) { // collapse, delete later as the node will expansions will be perm in the future.
 			setExpandedNodes(expandedNodes.filter(nodeID => nodeID !== id));
-		} else { // expand
-			triggerNewConfirmation(acceptCall, denyCall)
+		} else { // expand (AKA "Connect")
+			triggerNewConfirmation(acceptCall, denyCall, `${id}`, details)
 			//setExpandedNodes([...expandedNodes, id]);
 		}
 	}, [id, expandedNodes, setExpandedNodes]);
@@ -55,7 +60,7 @@ const Node = ({id, children, depth, expandedNodes, setExpandedNodes, dx = 1, dy 
 
 	return (
 		<>
-		{!(id == "local.user") && 
+		{!(id == "kestrel:home") && 
 			<line 
 				x1={linePoints.x1} 
 				x2={linePoints.x2} 
@@ -72,8 +77,8 @@ const Node = ({id, children, depth, expandedNodes, setExpandedNodes, dx = 1, dy 
 					r={radius}
 					cx={coords.x}
 					cy={coords.y}
-					/* onClick={handleClick} */
-					onMouseDown={handleClick}
+					onClick={handleClick}
+					/* onMouseDown={handleClick} */
 					className={nodeClass}
 				/>
 				{expandedLeaf &&

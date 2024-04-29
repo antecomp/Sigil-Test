@@ -1,23 +1,26 @@
 import React from "react";
 import '~/styles/NSGraph/ConnectionPrompt.css'
 
-const ConnectionPrompt = ({acceptMethod, denyMethod, showStateSttr}) => {
+const ConnectionPrompt = ({acceptMethod, denyMethod, showStateSttr, dest, details}) => {
 
 	const handleAccept = () => {
 		acceptMethod()
-		showStateSttr(false)
+		showStateSttr('')
 	}
 
 	const handleDeny = () => {
 		denyMethod()
-		showStateSttr(false)
+		showStateSttr('')
 	}
 
 	return (
 		<div className="ConnectionPrompt">
-			This is a test
-			<button onClick={() => {handleAccept()}}>Accept Method</button>
-			<button onClick={() => {handleDeny()}}>Deny Method</button>
+			<div className="promptContainer">
+				<h1>Connect To {dest}?</h1>
+				<h2>{details.prompt}</h2>
+				<a style={{'--fgc': 'lime'}} className="stbtn" onClick={() => {handleAccept()}}>CONNECT</a>
+				<a style={{'--fgc': 'orangered'}} className="stbtn" onClick={() => {handleDeny()}}>CANCEL</a>
+			</div>
 		</div>
 	)
 }

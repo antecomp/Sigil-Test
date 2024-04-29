@@ -1,44 +1,45 @@
 export const root = {
-	id: "local.user",
+	id: "kestrel:home",
 	dx: 5,
 	dy: 2,
 	children: [
 		{
-			id: "Slopzone",
+			id: "kestrel:phone",
 			dx: 2,
 			dy: 0,
 		},
 		{
-			id: "Soyzone",
+			id: "kestrel:friends",
 			dx: 1,
 			dy: 2,
 			children: [
 				{
-					id: "cum",
+					id: "novacene:home",
 					dy: 1,
-					dx: 3
+					dx: 2.2
 				},
 				{
-					id: "megacum",
+					id: "divi:home",
 					dy: 2.5,
+					dx: 1.5
 				},
 				{
-					id: "slopSEX",
+					id: "jill:home",
 					dy: 3,
 					dx: 0
 				}
 			]
 		},
 		{
-			id: "Larpzone",
+			id: "omnidisplay:network",
 			dx: -2,
 			dy: 3,
 			children: [{
-				id: "Hyperlarp",
+				id: "slopzone:network",
 				dx: 0,
 				dy: 1,
 				children: [{
-					id: "Larpa"
+					id: "the slop module"
 				}]
 			}]
 		}
