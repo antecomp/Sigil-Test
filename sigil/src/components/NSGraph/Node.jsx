@@ -1,17 +1,27 @@
 import classNames from "classnames";
 import React, {useState, useEffect, useCallback} from "react";
 
-const Node = ({id, children, depth, expandedNodes, setExpandedNodes, dx = 1, dy = 1, parentCoords = {x:0, y:0}}) => {
+const Node = ({id, children, depth, expandedNodes, setExpandedNodes, dx = 1, dy = 1, parentCoords = {x:0, y:0}, triggerNewConfirmation}) => {
 
 	// move to a seperate consts file at some point I think. Propping these feels stupid tho
 	const radius = 10;
 	const offsetMultipler = 32;
 
+	const acceptCall = () => {
+		console.log(`accept called from ${id}`)
+		setExpandedNodes([...expandedNodes, id]);
+	}
+
+	const denyCall = () => {
+		console.log(`deny called from ${id}`)
+	}
+
 	const handleClick = useCallback(() => {
-		if(expandedNodes.includes(id)) {
+		if(expandedNodes.includes(id)) { // collapse, delete later as the node will expansions will be perm in the future.
 			setExpandedNodes(expandedNodes.filter(nodeID => nodeID !== id));
-		} else {
-			setExpandedNodes([...expandedNodes, id]);
+		} else { // expand
+			triggerNewConfirmation(acceptCall, denyCall)
+			//setExpandedNodes([...expandedNodes, id]);
 		}
 	}, [id, expandedNodes, setExpandedNodes]);
 
@@ -77,6 +87,7 @@ const Node = ({id, children, depth, expandedNodes, setExpandedNodes, dx = 1, dy 
 					expandedNodes={expandedNodes}
 					parentCoords={coords}
 					setExpandedNodes={setExpandedNodes} // mmm recursion + prop drilling....
+					triggerNewConfirmation={triggerNewConfirmation}
 					{...nodeProps} // this spread op is only covering whats inside "children" in NSMap object.
 				/>
 			)}
