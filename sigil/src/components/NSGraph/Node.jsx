@@ -17,7 +17,7 @@ const Node = ({id, children, depth, expandedNodes, setExpandedNodes, dx = 1, dy 
 	const acceptCall = () => {
 		console.log(`accept called from ${id}`)
 		setExpandedNodes([...expandedNodes, id]);
-		Modal.open(BattleCon, {closable: false, testTitle:"DAEMON", victoryCallback: victoryCallback})
+		Modal.open(BattleCon, {closable: false, testTitle:"DAEMON", victoryCallback: victoryCallback, daemonName: 'anthousai'})
 	}
 
 	const denyCall = () => {

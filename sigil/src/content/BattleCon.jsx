@@ -1,19 +1,35 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, Suspense} from "react";
 import '~/styles/BattleCon.css'
 import StatusTerm from "~/components/BattleCon/StatusTerm";
 import Sigil from "~/components/BattleCon/sigil";
 import {runeData} from "~/static/runeData.js"
 import Daecon from "~/components/BattleCon/DaeCon.jsx";
-import PlaceholderDaemonImg from '~/artwork/placeholderdaemon.png'
 import labeldemarc from '~/assets/ui/labeldemarc.png'
 import TXRX from '~/assets/ui/TXRX.gif'
 import TooltipWrapper from "~/components/util/TooltipWrapper.jsx";
 import SideStatus from "~/components/BattleCon/SideStatus.jsx";
 import { useModalWindow } from "react-modal-global";
 
-const BattleCon = ({battleData, testTitle, victoryCallback}) => {
+async function loadDaemon (daemonName) {
+	const response = await import(`../static/daemons/${daemonName}.js`)
+	console.log(`loading daemon, reference object below for what loaded;`)
+	console.log(response.default);
+	return response.default;
+}
+
+
+const BattleCon = ({daemonName, testTitle, victoryCallback}) => {
 
 	const modal = useModalWindow();
+
+
+	const [daemonData, setDaemonData] = useState(null);
+	useEffect(() => {
+		loadDaemon(daemonName).then(daemon => setDaemonData(daemon));
+	}, [])
+
+
+
 
 	const closeTest = () => {
 		console.log("close called, should see a callback call");
@@ -72,8 +88,6 @@ const BattleCon = ({battleData, testTitle, victoryCallback}) => {
 	  },
 	]
 
-	const placeholderEnochDaemonName = testTitle
-	const placeHolderDaemonName = "ANTHOUSAI"
 	const placeHolderDaemonDesc = <>
 		<h3>ANTHOUSAI</h3>
 		<p>
@@ -82,24 +96,31 @@ const BattleCon = ({battleData, testTitle, victoryCallback}) => {
 		</p>
 	</>
 
+
+  if (!daemonData) {
+    return <div>Loading...</div>; // Fallback UI
+  }
+
 	return (
 		<div className="BattleCon">
-			<div className="labelbar" onClick={closeTest}>{placeholderEnochDaemonName} <img src={labeldemarc} alt="" /></div>
-			<div className="left">
-				<Daecon img={PlaceholderDaemonImg}  />
-				<div className="bottomPanel">
-					<div className="bl">
-						DAEMONVEIL FAILURE MANUAL ENGAGEMENT PROTOCOL ONLINE <br /><br />
-						ENTITY.ID: <TooltipWrapper text={placeHolderDaemonDesc}>{placeHolderDaemonName}</TooltipWrapper>
-					</div>
-					<div className="sigilcon">
-						<Sigil radius={90} runeData={runeData.player} />
-					</div>
-					<div className="br">
-						<img src={TXRX} alt="" />
+
+				<div className="labelbar" onClick={closeTest}>{daemonData.enochName} <img src={labeldemarc} alt="" /></div>
+				<div className="left">
+					<Daecon img={daemonData.sprite}  />
+					<div className="bottomPanel">
+						<div className="bl">
+							DAEMONVEIL FAILURE MANUAL ENGAGEMENT PROTOCOL ONLINE <br /><br />
+							ENTITY.ID: <TooltipWrapper text={placeHolderDaemonDesc}>{daemonData.name}</TooltipWrapper>
+						</div>
+						<div className="sigilcon">
+							<Sigil radius={90} runeData={runeData.player} />
+						</div>
+						<div className="br">
+							<img src={TXRX} alt="" />
+						</div>
 					</div>
 				</div>
-			</div>
+
 			<div className="right">		
 				<StatusTerm messages={testMessages} />
 				<SideStatus phtnksStb={0.75} dmStb={0.33} />
