@@ -11,6 +11,7 @@
 	hyphens: auto;
 	outline: 4px solid black;
 	visibility: hidden; /* default, show triggered by code */
+	z-index: 9999999; /* lmao */
 }
 
 
