@@ -1,7 +1,7 @@
 import classNames from "classnames";
 import React, {useState, useEffect, useCallback} from "react";
 import Modal from '~/components/Modal/Modal'
-import BattleCon from "../../content/BattleCon";
+import BattleCon from "~/content/BattleCon";
 
 const Node = ({id, children, depth, expandedNodes, setExpandedNodes, dx = 1, dy = 1, parentCoords = {x:0, y:0}, triggerNewConfirmation}) => {
 
@@ -9,10 +9,15 @@ const Node = ({id, children, depth, expandedNodes, setExpandedNodes, dx = 1, dy 
 	const radius = 10;
 	const offsetMultipler = 32;
 
+	const victoryCallback = (victoryState) => {
+		console.log(victoryState);
+		console.log("this callback belongs to " + id)
+	}
+
 	const acceptCall = () => {
 		console.log(`accept called from ${id}`)
 		setExpandedNodes([...expandedNodes, id]);
-		Modal.open(BattleCon, {closable: false, testTitle:"NODE CALLED"})
+		Modal.open(BattleCon, {closable: false, testTitle:"DAEMON", victoryCallback: victoryCallback})
 	}
 
 	const denyCall = () => {

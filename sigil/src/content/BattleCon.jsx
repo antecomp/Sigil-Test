@@ -11,9 +11,15 @@ import TooltipWrapper from "~/components/util/TooltipWrapper.jsx";
 import SideStatus from "~/components/BattleCon/SideStatus.jsx";
 import { useModalWindow } from "react-modal-global";
 
-const BattleCon = ({battleData, testTitle}) => {
+const BattleCon = ({battleData, testTitle, victoryCallback}) => {
 
 	const modal = useModalWindow();
+
+	const closeTest = () => {
+		console.log("close called, should see a callback call");
+		modal.close()
+		victoryCallback("Preemptive Close, passed to callback")
+	}
 
 	const testMessages = [
 	  {
@@ -78,7 +84,7 @@ const BattleCon = ({battleData, testTitle}) => {
 
 	return (
 		<div className="BattleCon">
-			<div className="labelbar" onClick={modal.close}>{placeholderEnochDaemonName} <img src={labeldemarc} alt="" /></div>
+			<div className="labelbar" onClick={closeTest}>{placeholderEnochDaemonName} <img src={labeldemarc} alt="" /></div>
 			<div className="left">
 				<Daecon img={PlaceholderDaemonImg}  />
 				<div className="bottomPanel">
