@@ -9,8 +9,11 @@ import labeldemarc from '~/assets/ui/labeldemarc.png'
 import TXRX from '~/assets/ui/TXRX.gif'
 import TooltipWrapper from "~/components/util/TooltipWrapper.jsx";
 import SideStatus from "~/components/BattleCon/SideStatus.jsx";
+import { useModalWindow } from "react-modal-global";
 
-const BattleCon = ({battleData}) => {
+const BattleCon = ({battleData, testTitle}) => {
+
+	const modal = useModalWindow();
 
 	const testMessages = [
 	  {
@@ -63,7 +66,7 @@ const BattleCon = ({battleData}) => {
 	  },
 	]
 
-	const placeholderEnochDaemonName = "ANTHOUSAI"
+	const placeholderEnochDaemonName = testTitle
 	const placeHolderDaemonName = "ANTHOUSAI"
 	const placeHolderDaemonDesc = <>
 		<h3>ANTHOUSAI</h3>
@@ -75,7 +78,7 @@ const BattleCon = ({battleData}) => {
 
 	return (
 		<div className="BattleCon">
-			<div className="labelbar">{placeholderEnochDaemonName} <img src={labeldemarc} alt="" /></div>
+			<div className="labelbar" onClick={modal.close}>{placeholderEnochDaemonName} <img src={labeldemarc} alt="" /></div>
 			<div className="left">
 				<Daecon img={PlaceholderDaemonImg}  />
 				<div className="bottomPanel">

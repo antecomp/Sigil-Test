@@ -1,5 +1,7 @@
 import classNames from "classnames";
 import React, {useState, useEffect, useCallback} from "react";
+import Modal from '~/components/Modal/Modal'
+import BattleCon from "../../content/BattleCon";
 
 const Node = ({id, children, depth, expandedNodes, setExpandedNodes, dx = 1, dy = 1, parentCoords = {x:0, y:0}, triggerNewConfirmation}) => {
 
@@ -10,6 +12,7 @@ const Node = ({id, children, depth, expandedNodes, setExpandedNodes, dx = 1, dy 
 	const acceptCall = () => {
 		console.log(`accept called from ${id}`)
 		setExpandedNodes([...expandedNodes, id]);
+		Modal.open(BattleCon, {closable: false, testTitle:"NODE CALLED"})
 	}
 
 	const denyCall = () => {
