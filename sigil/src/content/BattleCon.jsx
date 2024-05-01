@@ -1,14 +1,14 @@
 import React, {useState, useEffect} from "react";
 import '~/styles/BattleCon.css'
-import StatusTerm from "~/components/StatusTerm";
-import Sigil from "~/components/sigil";
+import StatusTerm from "~/components/BattleCon/StatusTerm";
+import Sigil from "~/components/BattleCon/sigil";
 import {runeData} from "~/static/runeData.js"
-import Daecon from "~/components/DaeCon.jsx";
+import Daecon from "~/components/BattleCon/DaeCon.jsx";
 import PlaceholderDaemonImg from '~/artwork/placeholderdaemon.png'
 import labeldemarc from '~/assets/ui/labeldemarc.png'
 import TXRX from '~/assets/ui/TXRX.gif'
 import TooltipWrapper from "~/components/util/TooltipWrapper.jsx";
-import SideStatus from "~/components/SideStatus.jsx";
+import SideStatus from "~/components/BattleCon/SideStatus.jsx";
 
 const BattleCon = ({battleData}) => {
 

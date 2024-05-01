@@ -1,0 +1,64 @@
+.NSTracerWindow {
+	width: 650px;
+	height: 450px;
+	border: var(--fgc) double 3px;
+	background: url(../assets/ui/NSTracerBG.png);
+	background-position: 12px;
+	overflow: hidden;
+	position: relative; /* needed for button position to work, may need fix when draggable implemented */
+}
+
+.ZoomTools {
+	position: absolute;
+	top: 0;
+	right: 0px;
+	z-index: 2; /* WHY */
+}
+
+
+.NSTracerWindow svg {
+	shape-rendering: revert;
+}
+
+.ZoomTools button {
+	font-family: 'pixl-wd';
+	background: none;
+	color: var(--fgc);
+	border: none;
+	font-size: 32px;
+	padding-top: 4px;
+}
+
+.mapNode {
+	stroke: var(--altfgc);
+}
+
+.visitedNode {
+	stroke: var(--fgc);
+}
+
+line.mapNode {
+	stroke: var(--altfgc);
+	stroke-dasharray: 5;
+}
+
+line.visitedNode {
+	stroke: var(--fgc);
+	stroke-dasharray: 0;
+}
+
+circle.mapNode:hover {
+	cursor: pointer;
+	filter: drop-shadow(0 0 3px var(--fgc));
+	stroke: var(--fgc);
+}
+
+circle.expandedLeaf {
+	stroke: red;
+}
+
+.exlText {
+	fill: red;
+	font-family: 'teeny';
+	font-size: 6px;
+}

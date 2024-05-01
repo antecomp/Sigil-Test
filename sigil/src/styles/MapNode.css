@@ -1,0 +1,8 @@
+.mapNode {
+	color: var(--fgc);
+	cursor: default;
+}
+
+.mapNode * {
+	font-weight: normal;
+}

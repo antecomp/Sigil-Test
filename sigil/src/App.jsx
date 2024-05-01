@@ -1,6 +1,8 @@
-import Sigil from '~/components/sigil';
 import '~/styles/Base.css'
 import BattleCon from '~/content/BattleCon';
+import {root} from '~/static/NSMap';
+import { useEffect, useState } from 'react';
+import NSGraph from './content/NSGraph';
 
 function App() {
 
@@ -8,7 +10,9 @@ function App() {
     <div className="App" id='window'>
 
     
-    <BattleCon/>
+    {/* <BattleCon/> */}
+
+    <NSGraph />
 
     </div>
   );

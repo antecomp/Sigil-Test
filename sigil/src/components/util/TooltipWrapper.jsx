@@ -12,7 +12,7 @@ const TooltipWrapper = ({children, text, enabled = true, offset = {x:10, y:10}, 
 		<>
 			{toolTipTarget && <Tooltip offset={offset} delay={delay}> {toolTipTarget} </Tooltip>}
 			<inline
-				class="hasTooltip"
+				className="hasTooltip"
 				onMouseEnter={() => enabled ? setTooltipTarget(text) : setTooltipTarget(null)}
 				onMouseLeave={() => setTooltipTarget(null)}
 			>

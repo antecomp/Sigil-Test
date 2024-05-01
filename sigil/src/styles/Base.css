@@ -46,3 +46,17 @@ body {
 	background-color: var(--bgc);
 	font-family: "main"; /* to serve as a "default" */
 }
+
+::-webkit-scrollbar {
+    width: 2px;
+    background-color: #000000;
+}
+
+::-webkit-scrollbar-thumb {
+    color: var(--fgc);
+    background-color: var(--fgc);
+}
+
+::-webkit-scrollbar-button {
+    display: none; /* Hide the scrollbar buttons */
+}
