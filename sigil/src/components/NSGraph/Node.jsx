@@ -17,7 +17,14 @@ const Node = ({id, children, depth, expandedNodes, setExpandedNodes, dx = 1, dy 
 	const acceptCall = () => {
 		console.log(`accept called from ${id}`)
 		setExpandedNodes([...expandedNodes, id]);
-		Modal.open(BattleCon, {closable: false, testTitle:"DAEMON", victoryCallback: victoryCallback, daemonName: 'anthousai'})
+
+		// Lazy test of different imports, this will be based on the node object property soon.
+		if (id.includes("kestrel")) {
+			Modal.open(BattleCon, {closable: false, testTitle:"DAEMON", victoryCallback: victoryCallback, daemonName: 'automata'})
+		} else {
+			Modal.open(BattleCon, {closable: false, testTitle:"DAEMON", victoryCallback: victoryCallback, daemonName: 'anthousai'})
+		}
+
 	}
 
 	const denyCall = () => {
