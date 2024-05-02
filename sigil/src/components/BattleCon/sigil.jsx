@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react';
 import '~/styles/sigil.css'
 import { Tooltip } from '~/components/util/Tooltip';
 
-const Sigil = ({ radius, runeData }) => {
+const Sigil = ({ radius, playerRuneData }) => {
 
 	// main circle vars
-	const numRunes = runeData.maxNumRunes;
-	const runesPerMove = runeData.runesPerMove; // how many runes do we pick before marking as "finished"
+	const numRunes = playerRuneData.maxNumRunes;
+	const runesPerMove = playerRuneData.runesPerMove; // how many runes do we pick before marking as "finished"
 	const runeCircles = [];
 	const svgDim = radius * 2.7; /* *2.5 to fit perfectly, making it larger for the outer masking circle to work */
 	const cx = svgDim / 2;
@@ -80,7 +80,7 @@ const Sigil = ({ radius, runeData }) => {
 		setTooltipTarget(null); // hide tooltips when we hide the rune selector.
 
 		clickedRunes.forEach((rune) => {
-			console.log(runeData.runeMap[rune.key]);
+			console.log(playerRuneData.runeMap[rune.key]);
 		})
 	}
 
@@ -110,10 +110,10 @@ const Sigil = ({ radius, runeData }) => {
 
 
 					// tooltip code
-					onMouseEnter={() => !finished ? setTooltipTarget(generateRuneTooltip(runeData.runeMap[i])) : setTooltipTarget(null)}
+					onMouseEnter={() => !finished ? setTooltipTarget(generateRuneTooltip(playerRuneData.runeMap[i])) : setTooltipTarget(null)}
 					onMouseLeave={() => setTooltipTarget(null)}
 				/>
-				<text x={x} y={y} textAnchor='middle' dy=".35em" dx=".1em" fill="white">{runeData.runeMap[i].symbol}</text>
+				<text x={x} y={y} textAnchor='middle' dy=".35em" dx=".1em" fill="white">{playerRuneData.runeMap[i].symbol}</text>
 			</g>
 		);
 	}

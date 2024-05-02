@@ -28,6 +28,7 @@
 .DaeCon {
 	border: 3px double var(--fgc);
 	border-bottom: none;
+	background: black;
 }
 
 .left .DaeCon {
