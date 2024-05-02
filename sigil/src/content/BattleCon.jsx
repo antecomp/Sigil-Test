@@ -10,22 +10,22 @@ import TooltipWrapper from "~/components/util/TooltipWrapper.jsx";
 import SideStatus from "~/components/BattleCon/SideStatus.jsx";
 import { useModalWindow } from "react-modal-global";
 
-async function loadDaemon (daemonName) { // rename this, this name is confusing. Its the fileName not the daemonName.
-	const response = await import(`../static/daemons/${daemonName}.js`)
+async function loadDaemon (fileName) { 
+	const response = await import(`../static/daemons/${fileName}.js`)
 	console.log(`loading daemon, reference object below for what loaded;`)
 	console.log(response.default);
 	return response.default;
 }
 
-// rename daemonName prop to something else, this name is confusing. Its the fileName not the daemonName.
-const BattleCon = ({daemonName, testTitle, victoryCallback}) => {
+
+const BattleCon = ({fileName, testTitle, victoryCallback}) => {
 
 	const modal = useModalWindow();
 
 
 	const [daemonData, setDaemonData] = useState(null);
 	useEffect(() => {
-		loadDaemon(daemonName).then(daemon => setDaemonData(daemon));
+		loadDaemon(fileName).then(daemon => setDaemonData(daemon));
 	}, [])
 
 
