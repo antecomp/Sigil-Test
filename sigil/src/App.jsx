@@ -5,7 +5,6 @@ import { ModalContainer } from 'react-modal-global';
 import Modal from "~/components/Modal/Modal.jsx"
 import "react-modal-global/styles/modal.scss" // Imports essential styles for `ModalContainer`.
 import "~/styles/Modal/ModalOverrides.css"
-import TestViewer from './components/Modal/TestViewer';
 
 function App() {
 
@@ -20,7 +19,6 @@ function App() {
 
     </div>
     <ModalContainer controller={Modal}/>
-    <TestViewer/>
     </>
   );
 }
