@@ -10,8 +10,8 @@ const Node = ({id, children, expandedNodes, setExpandedNodes, dx = 1, dy = 1, pa
 	const radius = 10;
 	const offsetMultipler = 32;
 
-	const nodeCallback = (victoryState) => {
-		console.log(victoryState);
+	const nodeCallback = (result) => {
+		console.log(result);
 		console.log("this callback belongs to " + id)
 	}
 
@@ -21,7 +21,7 @@ const Node = ({id, children, expandedNodes, setExpandedNodes, dx = 1, dy = 1, pa
 	}
 
 	const acceptCall = () => {
-		console.log(`accept called from ${id}`)
+		//console.log(`accept called from ${id}`)
 		setExpandedNodes([...expandedNodes, id]); /* eventually this will be moved to the nodeCallback handler, only expand when the callBack reports we should */
 		/* Todo: Move this to a global state / state management thing */
 
@@ -46,7 +46,7 @@ const Node = ({id, children, expandedNodes, setExpandedNodes, dx = 1, dy = 1, pa
 	}
 
 	const denyCall = () => {
-		console.log(`deny called from ${id}`)
+		console.log(`connection cancelled for ${id}`)
 	}
 
 	const details = {

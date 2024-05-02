@@ -12,8 +12,6 @@ import { useModalWindow } from "react-modal-global";
 
 async function loadDaemon (fileName) { 
 	const response = await import(`../static/daemons/${fileName}.js`)
-	console.log(`loading daemon, reference object below for what loaded;`)
-	console.log(response.default);
 	return response.default;
 }
 
@@ -25,14 +23,16 @@ const BattleCon = ({fileName, nodeCallback}) => {
 
 	const [daemonData, setDaemonData] = useState(null);
 	useEffect(() => {
+		// For some reason this is being invoked twice. Doesn't seem to hurt anything but I should figure out why.
+		//console.log('useEffect called, triggering daemonload')
 		loadDaemon(fileName).then(daemon => setDaemonData(daemon));
-	}, [])
+	}, [fileName])
 
 
 
 
 	const closeTest = () => {
-		console.log("close called, should see a callback call");
+		//console.log("close called, should see a callback call");
 		modal.close()
 		nodeCallback("Preemptive Close, passed to callback")
 	}
