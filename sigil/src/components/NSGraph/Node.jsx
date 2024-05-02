@@ -20,7 +20,7 @@ const Node = ({id, children, depth, expandedNodes, setExpandedNodes, dx = 1, dy 
 
 		// Lazy test of different imports, this will be based on the node object property soon.
 		if (id.includes("kestrel")) {
-			Modal.open(BattleCon, {closable: false, testTitle:"DAEMON", victoryCallback: victoryCallback, daemonName: 'automata'})
+			Modal.open(BattleCon, {closable: false, testTitle:"DAEMON", victoryCallback: victoryCallback, daemonName: 'automata'}) // rename this, this name is confusing. Its the fileName not the daemonName.
 		} else {
 			Modal.open(BattleCon, {closable: false, testTitle:"DAEMON", victoryCallback: victoryCallback, daemonName: 'anthousai'})
 		}

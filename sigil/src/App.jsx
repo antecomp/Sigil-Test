@@ -14,9 +14,9 @@ function App() {
     <div className="App" id='window'>
 
     
-    {/* <BattleCon/> */}
+      {/* <BattleCon/> */}
 
-    <NSGraph />
+      <NSGraph />
 
     </div>
     <ModalContainer controller={Modal}/>

@@ -10,14 +10,14 @@ import TooltipWrapper from "~/components/util/TooltipWrapper.jsx";
 import SideStatus from "~/components/BattleCon/SideStatus.jsx";
 import { useModalWindow } from "react-modal-global";
 
-async function loadDaemon (daemonName) {
+async function loadDaemon (daemonName) { // rename this, this name is confusing. Its the fileName not the daemonName.
 	const response = await import(`../static/daemons/${daemonName}.js`)
 	console.log(`loading daemon, reference object below for what loaded;`)
 	console.log(response.default);
 	return response.default;
 }
 
-
+// rename daemonName prop to something else, this name is confusing. Its the fileName not the daemonName.
 const BattleCon = ({daemonName, testTitle, victoryCallback}) => {
 
 	const modal = useModalWindow();
@@ -113,7 +113,7 @@ const BattleCon = ({daemonName, testTitle, victoryCallback}) => {
 							ENTITY.ID: <TooltipWrapper text={placeHolderDaemonDesc}>{daemonData.name}</TooltipWrapper>
 						</div>
 						<div className="sigilcon">
-							<Sigil radius={90} runeData={runeData.player} />
+							<Sigil radius={90} playerRuneData={runeData.player} />
 						</div>
 						<div className="br">
 							<img src={TXRX} alt="" />
