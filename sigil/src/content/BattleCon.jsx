@@ -18,7 +18,7 @@ async function loadDaemon (fileName) {
 }
 
 
-const BattleCon = ({fileName, victoryCallback}) => {
+const BattleCon = ({fileName, nodeCallback}) => {
 
 	const modal = useModalWindow();
 
@@ -34,7 +34,7 @@ const BattleCon = ({fileName, victoryCallback}) => {
 	const closeTest = () => {
 		console.log("close called, should see a callback call");
 		modal.close()
-		victoryCallback("Preemptive Close, passed to callback")
+		nodeCallback("Preemptive Close, passed to callback")
 	}
 
 	const testMessages = [
