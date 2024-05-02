@@ -18,7 +18,7 @@ async function loadDaemon (fileName) {
 }
 
 
-const BattleCon = ({fileName, testTitle, victoryCallback}) => {
+const BattleCon = ({fileName, victoryCallback}) => {
 
 	const modal = useModalWindow();
 
