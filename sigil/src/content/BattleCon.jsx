@@ -88,18 +88,20 @@ const BattleCon = ({daemonName, testTitle, victoryCallback}) => {
 	  },
 	]
 
-	const placeHolderDaemonDesc = <>
-		<h3>ANTHOUSAI</h3>
-		<p>
-			TYPE: NYMPH <hr/>
-			Would you uproot a Hyacinth in the name of your God?
-		</p>
-	</>
-
+	
 
   if (!daemonData) {
     return <div>Loading...</div>; // Fallback UI
   }
+
+  const daemonInfoTooltip = <>
+		<h3>{daemonData.name}</h3>
+		<p>
+			TYPE: {daemonData.type} <hr/>
+			{daemonData.description}
+		</p>
+	</>
+
 
 	return (
 		<div className="BattleCon">
@@ -110,7 +112,10 @@ const BattleCon = ({daemonName, testTitle, victoryCallback}) => {
 					<div className="bottomPanel">
 						<div className="bl">
 							DAEMONVEIL FAILURE MANUAL ENGAGEMENT PROTOCOL ONLINE <br /><br />
-							ENTITY.ID: <TooltipWrapper text={placeHolderDaemonDesc}>{daemonData.name}</TooltipWrapper>
+							ENTITY.ID: 
+							<TooltipWrapper text={daemonInfoTooltip}>
+								{daemonData.name}
+								</TooltipWrapper>
 						</div>
 						<div className="sigilcon">
 							<Sigil radius={90} playerRuneData={runeData.player} />
