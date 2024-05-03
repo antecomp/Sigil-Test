@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import '~/styles/StatusTerm.css'
+import '~/styles/BattleCon/StatusTerm.css'
 import battltermIcon from '~/assets/ui/battleterm_icon.png'
 
 const StatusTerm = ({messages}) => {

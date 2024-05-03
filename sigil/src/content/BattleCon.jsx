@@ -1,5 +1,5 @@
 import React, {useState, useEffect, Suspense} from "react";
-import '~/styles/BattleCon.css'
+import '~/styles/BattleCon/BattleCon.css'
 import StatusTerm from "~/components/BattleCon/StatusTerm";
 import Sigil from "~/components/BattleCon/sigil";
 import {runeData} from "~/static/runeData.js"

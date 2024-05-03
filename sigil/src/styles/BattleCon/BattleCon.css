@@ -113,14 +113,14 @@
 }
 
 .bottomPanel::before {
-	content: url('../assets/ui/double_corner_left.png');
+	content: url('~/assets/ui/double_corner_left.png');
 	position: absolute;
 	bottom: -4px;
 	left: 0;
 }
 
 .bottomPanel::after {
-	content: url('../assets/ui/double_corner_right.png');
+	content: url('~/assets/ui/double_corner_right.png');
 	position: absolute;
 	bottom: -4px;
 	left: calc(var(--leftwidth) - 9px);

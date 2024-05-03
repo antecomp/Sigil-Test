@@ -1,6 +1,6 @@
 import React, {useState, useEffect, useCallback} from "react";
 import {root} from '~/static/NSMap';
-import '~/styles/NSGraph.css'
+import '~/styles/NSGraph/NSGraph.css'
 import Node from "../components/NSGraph/Node";
 
 import { TransformWrapper, TransformComponent, useControls } from "react-zoom-pan-pinch";

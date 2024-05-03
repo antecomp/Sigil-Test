@@ -1,6 +1,6 @@
 import React from "react";
-import '~/styles/Meter.css'
-import '~/styles/SideStatus.css'
+import '~/styles/extra/Meter.css'
+import '~/styles/BattleCon/SideStatus.css'
 import TooltipWrapper from "~/components/util/TooltipWrapper";
 
 /* stability numbers should be <= 1, a health percentage, soley visual. This shit should never track the actual health state for obvious reasons */
@@ -28,7 +28,7 @@ const SideStatus = ({phtnksStb, dmStb}) => {
 	const phtdesc = (
 		<>
 			<h4>
-				Phantastikos
+				Phantastikos Corruption
 			</h4>
 			<p>
 				"ADVERSARY HEALTH" STABILITY OF DAEMONS ILLUSTION. REDUCE TO VANQUISH.
@@ -39,7 +39,7 @@ const SideStatus = ({phtnksStb, dmStb}) => {
 	const dmdesc = (
 		<>
 			<h4>
-				Daemonveil
+				Daemonveil Stability
 			</h4>
 			<p>
 				"USER HEALTH" <br/> DAEMONVEIL PROTECTS FROM DAEMONIC INFLUENCE. TOTAL DAEMONVEIL FAILURE TRIGGERS AUTOMATIC EJECTION OF VI-LINK
@@ -54,7 +54,7 @@ const SideStatus = ({phtnksStb, dmStb}) => {
 			<div className="sid">USR VI-ID: dv8:8a3</div>
 			<div className="sid">RCP VI-ID: ---:---</div>
 			<hr />
-			<div className="stb"><TooltipWrapper text={phtdesc}>PHTNKS STBLTY</TooltipWrapper> <Meter level={phtnksStb * 20}/> </div>
+			<div className="stb"><TooltipWrapper text={phtdesc}>PHTNKS CRRPTN</TooltipWrapper> <Meter level={phtnksStb * 20}/> </div>
 			<div className="stb"><TooltipWrapper text={dmdesc}>DMVEIL STBLTY</TooltipWrapper> <Meter level={dmStb * 20}/> </div>
 		</div>
 	)

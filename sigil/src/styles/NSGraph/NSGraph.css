@@ -2,7 +2,7 @@
 	width: 650px;
 	height: 450px;
 	border: var(--fgc) double 3px;
-	background: url(../assets/ui/NSTracerBG.png);
+	background: url(~/assets/ui/NSTracerBG.png);
 	background-position: 12px;
 	overflow: hidden;
 	position: relative; /* needed for button position to work, may need fix when draggable implemented */

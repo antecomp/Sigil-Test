@@ -32,7 +32,7 @@
 	border-bottom: solid var(--fgc) 1px;
 	position: sticky;
     top: 0;
-    background: black;
+    background: var(--bgc);
 }
 
 .titlebar img {

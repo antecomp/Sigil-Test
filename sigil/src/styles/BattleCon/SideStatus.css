@@ -49,7 +49,7 @@
 }
 
 .SideStatus::after {
-	content: url('../assets/ui/single_corner_left.png');
+	content: url('~/assets/ui/single_corner_left.png');
 	position: absolute;
 	left: -1px;
 	bottom: -3px;
