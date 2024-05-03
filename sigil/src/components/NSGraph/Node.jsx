@@ -3,8 +3,15 @@ import React, {useState, useEffect, useCallback} from "react";
 import Modal from '~/components/Modal/Modal'
 import BattleCon from "~/content/BattleCon";
 import { actionMap } from "~/static/actionMap";
+import useNSGraphStore from "../../store";
 
 const Node = ({id, children, expandedNodes, setExpandedNodes, dx = 1, dy = 1, parentCoords = {x:0, y:0}, triggerNewConfirmation, action, actionProps, postConnect}) => {
+
+
+	const addNode = useNSGraphStore((state) => state.addNode)
+	const removeNode = useNSGraphStore((state) => state.removeNode)
+
+
 
 	// move to a seperate consts file at some point I think. Propping these feels stupid tho
 	const radius = 10;
@@ -22,7 +29,8 @@ const Node = ({id, children, expandedNodes, setExpandedNodes, dx = 1, dy = 1, pa
 
 	const acceptCall = () => {
 		//console.log(`accept called from ${id}`)
-		setExpandedNodes([...expandedNodes, id]); /* eventually this will be moved to the nodeCallback handler, only expand when the callBack reports we should */
+		//setExpandedNodes([...expandedNodes, id]); /* eventually this will be moved to the nodeCallback handler, only expand when the callBack reports we should */
+		addNode(id)
 		/* Todo: Move this to a global state / state management thing */
 
 		// Should this be passed to some sort of global handler? Feels like we'd just be dealing with forwarding more callback hell just to get psuedo-single responsibility...?
@@ -55,7 +63,8 @@ const Node = ({id, children, expandedNodes, setExpandedNodes, dx = 1, dy = 1, pa
 
 	const handleClick = useCallback(() => {
 		if(expandedNodes.includes(id)) { // collapse, delete later as the node will expansions will be perm in the future.
-			setExpandedNodes(expandedNodes.filter(nodeID => nodeID !== id));
+			//setExpandedNodes(expandedNodes.filter(nodeID => nodeID !== id));
+			removeNode(id)
 		} else { // expand (AKA "Connect")
 			triggerNewConfirmation(acceptCall, denyCall, `${id}`, details)
 			//setExpandedNodes([...expandedNodes, id]);
