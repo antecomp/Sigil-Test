@@ -23,8 +23,6 @@ const BattleCon = ({fileName, nodeCallback}) => {
 
 	const [daemonData, setDaemonData] = useState(null);
 	useEffect(() => {
-		// For some reason this is being invoked twice. Doesn't seem to hurt anything but I should figure out why.
-		//console.log('useEffect called, triggering daemonload')
 		loadDaemon(fileName).then(daemon => setDaemonData(daemon));
 	}, [fileName])
 
