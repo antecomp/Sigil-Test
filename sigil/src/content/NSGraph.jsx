@@ -2,10 +2,8 @@ import React, {useState, useEffect, useCallback} from "react";
 import {root} from '~/static/NSMap';
 import '~/styles/NSGraph/NSGraph.css'
 import Node from "../components/NSGraph/Node";
-
 import { TransformWrapper, TransformComponent, useControls } from "react-zoom-pan-pinch";
 import ConnectionPrompt from "~/components/NSGraph/ConnectionPrompt";
-import useNSGraphStore from "~/store.js";
 
 const NSGraph = () => {
 
@@ -33,7 +31,6 @@ const NSGraph = () => {
 		);
 	  };
 
-	  const expandedNodes = useNSGraphStore((state) => state.expandedNodes)
 
 	return (
 		<div className="NSTracerWindow">
@@ -58,8 +55,6 @@ const NSGraph = () => {
 				<TransformComponent>
 					<svg className="NSGraph" width={7650} height={450}>
 						<Node 
-							depth={0} 
-							expandedNodes={expandedNodes} 
 							triggerNewConfirmation={triggerNewConfirmation}
 							{...root}  
 						/>

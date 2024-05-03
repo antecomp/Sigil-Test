@@ -3,19 +3,22 @@ import React, {useState, useEffect, useCallback} from "react";
 import Modal from '~/components/Modal/Modal'
 import BattleCon from "~/content/BattleCon";
 import { actionMap } from "~/static/actionMap";
-import useNSGraphStore from "../../store";
+import useNSGraphStore from "~/store";
+import { nodeConstants } from "~/static/constants/nodeConstants";
 
-const Node = ({id, children, expandedNodes, setExpandedNodes, dx = 1, dy = 1, parentCoords = {x:0, y:0}, triggerNewConfirmation, action, actionProps, postConnect}) => {
+const Node = ({id, children, dx = 1, dy = 1, parentCoords = {x:0, y:0}, triggerNewConfirmation, action, actionProps, postConnect}) => {
 
 
+	const expandedNodes = useNSGraphStore((state) => state.expandedNodes)
 	const addNode = useNSGraphStore((state) => state.addNode)
 	const removeNode = useNSGraphStore((state) => state.removeNode)
 
 
 
 	// move to a seperate consts file at some point I think. Propping these feels stupid tho
-	const radius = 10;
-	const offsetMultipler = 32;
+	const radius = nodeConstants.radius;
+	const offsetMultipler = nodeConstants.offsetMultiplier;
+
 
 	const nodeCallback = (result) => {
 		console.log(result);
@@ -28,10 +31,8 @@ const Node = ({id, children, expandedNodes, setExpandedNodes, dx = 1, dy = 1, pa
 	}
 
 	const acceptCall = () => {
-		//console.log(`accept called from ${id}`)
-		//setExpandedNodes([...expandedNodes, id]); /* eventually this will be moved to the nodeCallback handler, only expand when the callBack reports we should */
+		/* eventually this will be moved to the nodeCallback handler, only expand when the callBack reports we should */
 		addNode(id)
-		/* Todo: Move this to a global state / state management thing */
 
 		// Should this be passed to some sort of global handler? Feels like we'd just be dealing with forwarding more callback hell just to get psuedo-single responsibility...?
 		switch (action) {
@@ -47,8 +48,7 @@ const Node = ({id, children, expandedNodes, setExpandedNodes, dx = 1, dy = 1, pa
 			// We can add any new type of interaction here...
 		}
 
-		// again, this should be moved / only invoked when we actually "connect" eventually
-		// if you call this with a fucking useEffect I will explode you with my mind - past omni
+		// again, this should be moved / only invoked when we actually "connect" eventually. Don't useEffect it for the love of dæmons
 		if (postConnect) {postConnect()}
 
 	}
@@ -63,13 +63,11 @@ const Node = ({id, children, expandedNodes, setExpandedNodes, dx = 1, dy = 1, pa
 
 	const handleClick = useCallback(() => {
 		if(expandedNodes.includes(id)) { // collapse, delete later as the node will expansions will be perm in the future.
-			//setExpandedNodes(expandedNodes.filter(nodeID => nodeID !== id));
 			removeNode(id)
 		} else { // expand (AKA "Connect")
 			triggerNewConfirmation(acceptCall, denyCall, `${id}`, details)
-			//setExpandedNodes([...expandedNodes, id]);
 		}
-	}, [id, expandedNodes, setExpandedNodes]);
+	}, [id, expandedNodes]);
 
 	const isNodeExpanded = expandedNodes.includes(id);
 
@@ -106,14 +104,12 @@ const Node = ({id, children, expandedNodes, setExpandedNodes, dx = 1, dy = 1, pa
 				x2={linePoints.x2} 
 				y1={linePoints.y1} 
 				y2={linePoints.y2} 
-				/* stroke="var(--fgc)" */
 				strokeWidth={1} 
 				className={nodeClass}
 			/>
 		}
 			<g>
 				<circle 
-					/* className="mapNode" */
 					r={radius}
 					cx={coords.x}
 					cy={coords.y}
@@ -128,9 +124,7 @@ const Node = ({id, children, expandedNodes, setExpandedNodes, dx = 1, dy = 1, pa
 			{isNodeExpanded && (children ?? []).map((nodeProps) =>
 				<Node
 					key={`id - ${Math.random()}`}
-					expandedNodes={expandedNodes}
 					parentCoords={coords}
-					setExpandedNodes={setExpandedNodes} // mmm recursion + prop drilling....
 					triggerNewConfirmation={triggerNewConfirmation}
 					{...nodeProps} // this spread op is only covering whats inside "children" in NSMap object.
 				/>
