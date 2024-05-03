@@ -1,9 +1,11 @@
-import React, {useState, useEffect, useCallback} from "react";
+import React, {useState, useEffect, useCallback, createContext} from "react";
 import {root} from '~/static/NSMap';
 import '~/styles/NSGraph/NSGraph.css'
 import Node from "../components/NSGraph/Node";
 import { TransformWrapper, TransformComponent, useControls } from "react-zoom-pan-pinch";
 import ConnectionPrompt from "~/components/NSGraph/ConnectionPrompt";
+
+export const ConfirmationContext = createContext();
 
 const NSGraph = () => {
 
@@ -53,12 +55,13 @@ const NSGraph = () => {
 			>
 				<Controls />
 				<TransformComponent>
+				<ConfirmationContext.Provider value={{ triggerNewConfirmation }}>
 					<svg className="NSGraph" width={7650} height={450}>
 						<Node 
-							triggerNewConfirmation={triggerNewConfirmation}
 							{...root}  
 						/>
 					</svg>
+				</ConfirmationContext.Provider>
 				</TransformComponent>
 			</TransformWrapper>
 		</div>

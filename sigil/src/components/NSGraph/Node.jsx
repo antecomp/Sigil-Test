@@ -1,13 +1,15 @@
 import classNames from "classnames";
-import React, {useState, useEffect, useCallback} from "react";
+import React, {useState, useEffect, useCallback, useContext} from "react";
 import Modal from '~/components/Modal/Modal'
 import BattleCon from "~/content/BattleCon";
 import { actionMap } from "~/static/actionMap";
 import useNSGraphStore from "~/store";
 import { nodeConstants } from "~/static/constants/nodeConstants";
+import { ConfirmationContext } from "~/content/NSGraph";
 
-const Node = ({id, children, dx = 1, dy = 1, parentCoords = {x:0, y:0}, triggerNewConfirmation, action, actionProps, postConnect}) => {
+const Node = ({id, children, dx = 1, dy = 1, parentCoords = {x:0, y:0}, action, actionProps, postConnect}) => {
 
+	const triggerNewConfirmation = useContext(ConfirmationContext).triggerNewConfirmation;
 
 	const expandedNodes = useNSGraphStore((state) => state.expandedNodes)
 	const addNode = useNSGraphStore((state) => state.addNode)
