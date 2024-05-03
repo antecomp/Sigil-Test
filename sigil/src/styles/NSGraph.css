@@ -41,6 +41,7 @@
 line.mapNode {
 	stroke: var(--altfgc);
 	stroke-dasharray: 5;
+	stroke-dashoffset: 5; /* adds a gap out of the parent circle, looks better when you have a cluster of lines all going to a similar junction. */
 }
 
 line.visitedNode {

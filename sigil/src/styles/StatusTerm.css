@@ -1,7 +1,7 @@
 .StatusTerm {
-	background-color: black;
-	border: solid white 1px;
-	color: white;
+	background-color: var(--bgc);
+	border: solid var(--fgc) 1px;
+	color: var(--fgc);
 	width: 295px;
 	text-align: left;
 	height: 165px;
@@ -14,11 +14,11 @@
 
 .StatusTerm::-webkit-scrollbar {
     width: 2px;
-    background-color: black;
+    background-color: var(--bgc);
 }
 
 .StatusTerm::-webkit-scrollbar-thumb {
-    background-color: white;
+    background-color: var(--fgc);
 	width: 2px;
 }
 
@@ -29,7 +29,7 @@
 .titlebar {
 	width: 100%;
 	height: 4px;
-	border-bottom: solid white 1px;
+	border-bottom: solid var(--fgc) 1px;
 	position: sticky;
     top: 0;
     background: black;

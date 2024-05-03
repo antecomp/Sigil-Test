@@ -3,13 +3,13 @@
 	top: 0;
 	left: 0;
 	pointer-events: none;
-	background-color: black;
-	color: white;
+	background-color: var(--bgc);
+	color: var(--fgc);
 	padding: 5px;
-	border: double 3px white;
+	border: double 3px var(--fgc);
 	max-width: 22ch;
 	hyphens: auto;
-	outline: 4px solid black;
+	outline: 4px solid var(--outlinec);
 	visibility: hidden; /* default, show triggered by code */
 	z-index: 9999999; /* lmao */
 }
