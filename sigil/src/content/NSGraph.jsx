@@ -15,12 +15,12 @@ const NSGraph = () => {
 	const [confDetails, setConfDetails] = useState({})
 
 
-	const triggerNewConfirmation = (acceptMethod, denyMethod, dest, details) => {
+	const triggerNewConfirmation = useCallback((acceptMethod, denyMethod, dest, details) => {
 		setNodeAcceptMethod(() => acceptMethod);
 		setNodeDenyMethod(() => denyMethod);
 		setShowConfirmation(dest);
 		setConfDetails(details);
-	}
+	})
 
 
 	const Controls = () => {
