@@ -1,4 +1,4 @@
-import React, {useState, useEffect, Suspense} from "react";
+import React, {useState, useEffect} from "react";
 import '~/styles/BattleCon/BattleCon.css'
 import StatusTerm from "~/components/BattleCon/StatusTerm";
 import Sigil from "~/components/BattleCon/sigil";
@@ -9,6 +9,7 @@ import TXRX from '~/assets/ui/TXRX.gif'
 import TooltipWrapper from "~/components/util/TooltipWrapper.jsx";
 import SideStatus from "~/components/BattleCon/SideStatus.jsx";
 import { useModalWindow } from "react-modal-global";
+import { testMessages } from "~/static/constants/placeholders";
 
 async function loadDaemon (fileName) { 
 	const response = await import(`../static/daemons/${fileName}.js`)
@@ -34,58 +35,6 @@ const BattleCon = ({fileName, nodeCallback}) => {
 		modal.close()
 		nodeCallback("Preemptive Close, passed to callback")
 	}
-
-	const testMessages = [
-	  {
-		icon: "<-",
-		content: "Eske:Attack"
-	  },
-	  {
-		icon: "->",
-		content: "Anthousai:Defend"
-	  },
-	  {
-		icon: "#",
-		content: "Nothing Happens!"
-	  },
-	  {
-		icon: "\n",
-		content: ""
-	  },
-	  {
-		icon: "<-",
-		content: "Eske:Attack"
-	  },
-	  {
-		icon: "->",
-		content: "Anthousai:Prepare"
-	  },
-	  {
-		icon: "#",
-		content: "Critical Breach!"
-	  },
-	  {
-		icon: "#",
-		content: "Phantastikos layer shredded!"
-	  },
-	  {
-		icon: "#",
-		content: "Several petals fall fromn the Anthousai"
-	  },
-	  {
-		icon: "\n",
-		content: ""
-	  },
-	  {
-		icon: "<-",
-		content: "Eske:Prepare"
-	  },
-	  {
-		icon: "->",
-		content: "Anthousai:Heal"
-	  },
-	]
-
 	
 
   if (!daemonData) {

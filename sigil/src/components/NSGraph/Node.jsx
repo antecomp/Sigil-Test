@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import React, {useState, useEffect, useCallback, useContext} from "react";
+import React, {useCallback, useContext} from "react";
 import Modal from '~/components/Modal/Modal'
 import BattleCon from "~/content/BattleCon";
 import { actionMap } from "~/static/actionMap";
@@ -127,7 +127,6 @@ const Node = ({id, children, dx = 1, dy = 1, parentCoords = {x:0, y:0}, action, 
 				<Node
 					key={`id - ${Math.random()}`}
 					parentCoords={coords}
-					triggerNewConfirmation={triggerNewConfirmation}
 					{...nodeProps} // this spread op is only covering whats inside "children" in NSMap object.
 				/>
 			)}

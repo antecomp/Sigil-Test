@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useCallback, createContext} from "react";
+import React, {useState, useCallback, createContext} from "react";
 import {root} from '~/static/NSMap';
 import '~/styles/NSGraph/NSGraph.css'
 import Node from "../components/NSGraph/Node";
