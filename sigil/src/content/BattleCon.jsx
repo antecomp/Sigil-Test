@@ -38,7 +38,7 @@ const BattleCon = ({fileName, nodeCallback}) => {
 	
 
   if (!daemonData) {
-    return <div>Loading...</div>; // Fallback UI
+    return <div id="BattleConLoading">Loading...</div>; // Fallback UI
   }
 
   const daemonInfoTooltip = <>

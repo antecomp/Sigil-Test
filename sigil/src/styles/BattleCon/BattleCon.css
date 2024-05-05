@@ -125,3 +125,20 @@
 	bottom: -4px;
 	left: calc(var(--leftwidth) - 9px);
 }
+
+
+
+/* Loading screen thingy //////////////////////////////////////////////////////////////////////////////////////////////////////// */
+
+#BattleConLoading {
+	color: var(--fgc);
+	background: var(--bgc);
+	border: double 3px var(--fgc);
+    width: fit-content;
+    height: fit-content;
+	padding: 13.5px;
+    position: fixed;
+	top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
