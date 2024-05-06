@@ -1,9 +1,15 @@
 import '~/styles/Dialogue/Textbox.css'
+import { useTypewriter } from '../../hooks/useTypewriter';
 
-const Textbox = () => {
+const Textbox = ({text}) => {
+
+    const [displayText, finishText] = useTypewriter(text, 50, () => {console.log("typing finished")});
+
     return (
-        <div className="Textbox"> 
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore aliquid pariatur voluptatibus vero voluptas, perspiciatis quas eveniet architecto consequuntur. Modi impedit delectus nemo ex velit! Ea nisi tenetur dicta ab!
+        <div className="Textbox" onClick={finishText}> 
+            <p>
+                {displayText}
+            </p>
         </div>
     )
 }

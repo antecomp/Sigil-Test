@@ -4,6 +4,7 @@ import Viewbox from "~/components/Dialogue/Viewbox";
 import chatIcon from '~/assets/ui/chaticon.png';
 import '~/styles/Dialogue/Dialogue.css';
 import { useModalWindow } from "react-modal-global";
+import { lorem } from "../static/constants/placeholders";
 
 const Dialogue = () => {
 
@@ -19,7 +20,7 @@ const Dialogue = () => {
             </div>
             <Viewbox/>
             <div className="DialogueBottom">
-                <Textbox/>
+                <Textbox text={lorem}/>
                 <ChoiceContainer choices = {CONT} canContinue = {false}/>
             </div>
         </div>

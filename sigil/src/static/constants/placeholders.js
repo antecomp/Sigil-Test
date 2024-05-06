@@ -48,3 +48,6 @@ export const testMessages = [
 	  content: "Anthousai:Heal"
 	},
   ]
+
+
+export const lorem = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi voluptatum in odit aspernatur dolor velit excepturi, porro doloremque sed vel, quod officiis laboriosam ipsa! Tempore placeat aliquam illo aliquid unde."

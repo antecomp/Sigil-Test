@@ -1,5 +1,5 @@
 .Textbox {
-    width: 100%;
+    min-width: 100%;
     border: solid 1px var(--fgc);
     position: relative;
     background: var(--bgc);

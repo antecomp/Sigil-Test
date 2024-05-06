@@ -24,7 +24,7 @@
 .DialogueBottom {
     width: 100%;
     display: grid;
-    grid-template-columns: auto auto;
+    grid-template-columns: 668px auto;
     margin-top: 5px;
     gap: 17px;
 
