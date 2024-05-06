@@ -1,10 +1,9 @@
 .Textbox {
-    height: 100%;
     width: 100%;
     border: solid 1px var(--fgc);
     position: relative;
     background: var(--bgc);
-    
+    padding: 5px;
 }
 
 .Textbox::after {
