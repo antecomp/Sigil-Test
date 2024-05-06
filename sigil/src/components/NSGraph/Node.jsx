@@ -6,6 +6,7 @@ import { actionMap } from "~/static/actionMap";
 import useNSGraphStore from "~/store";
 import { nodeConstants } from "~/static/constants/nodeConstants";
 import { ConfirmationContext } from "~/content/NSGraph";
+import Dialogue from "../../content/Dialogue";
 
 const Node = ({id, children, dx = 1, dy = 1, parentCoords = {x:0, y:0}, action, actionProps, postConnect}) => {
 
@@ -44,8 +45,9 @@ const Node = ({id, children, dx = 1, dy = 1, parentCoords = {x:0, y:0}, action, 
 			case 'autoconnect':
 				// eventually we will want to invoke any secondary calls that autoconnect may have (within actionProps)
 			break;
-			case 'cutscene':
-				// Modal.open cutscene window, pass needed info (not implemented)
+			case 'dialogue':
+				Modal.open(Dialogue, {...modalDefaults}); 
+				//cutscene window, pass needed info (hi)
 			break;
 			// We can add any new type of interaction here...
 		}

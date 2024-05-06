@@ -59,6 +59,10 @@ export const root = {
 						id: "the slop module",
 						action: 'battle',
 						actionProps: { fileName: 'anthousai' },
+					},
+					{
+						id: "the mori zone",
+						action: 'dialogue',
 					}
 				]
 			}]

@@ -1,0 +1,30 @@
+.DialogueContainer {
+    width: 775px;
+    grid-template-rows: 13px 570px 128px;
+    grid-template-columns: 775px;
+    display: grid;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+}
+
+.DialogueTitle img {
+    height: 100%;
+    display: block;
+}
+
+.DialogueTitle {
+    background: url(~/assets/ui/titlebar_texture.png);
+    border: solid 1px var(--fgc);
+}
+
+.DialogueBottom {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 670px auto;
+    margin-top: 5px;
+    gap: 5px;
+
+}

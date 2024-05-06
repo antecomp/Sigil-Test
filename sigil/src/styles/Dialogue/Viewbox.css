@@ -1,0 +1,14 @@
+.Viewbox {
+    height: 565px;
+    border: double 3px var(--fgc);
+    position: relative;
+    background: var(--bgc);
+
+}
+
+.Viewbox img {
+    position: absolute;
+    left: 10px;
+    bottom: 0;
+}
+

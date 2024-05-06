@@ -1,0 +1,25 @@
+.ChoiceContainer {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: normal;
+    align-content: normal;
+    gap: 3px;
+
+  }
+
+  .ChoiceContainer a {
+    border: 1px solid var(--fgc);
+    padding: 3px;
+    color: var(--fgc);
+    text-align: center;
+
+  }
+
+  
+  
+  .ChoiceContainer .continueUnavailable { /*Targeting a class w/ this*/
+    --fgc: grey;
+  }
+

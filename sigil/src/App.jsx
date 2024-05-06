@@ -16,7 +16,6 @@ function App() {
       {/* <BattleCon/> */}
 
       <NSGraph />
-
     </div>
     <ModalContainer controller={Modal}/>
     </>

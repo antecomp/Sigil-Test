@@ -10,7 +10,7 @@ export const actionMap = {
 		prompt: `STRONG DAEMONIC INFLUENCE DETECTED. \n PROCEED WITH EXTREME CAUTION.`
 	},
 
-	cutscene: {
+	dialogue: {
 		prompt: "UNABLE TO PROD CONNECTION NODE. PROCEED WITH CAUTION."
 	}
 }

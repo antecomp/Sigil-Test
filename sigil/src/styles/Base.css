@@ -45,6 +45,7 @@
 body {
 	background-color: var(--bgc);
 	font-family: "main"; /* to serve as a "default" */
+	color: var(--fgc);
 }
 
 ::-webkit-scrollbar {
