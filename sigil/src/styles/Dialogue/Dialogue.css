@@ -18,6 +18,7 @@
 .DialogueTitle {
     background: url(~/assets/ui/titlebar_texture.png);
     border: solid 1px var(--fgc);
+    transform: translateY(1px);
 }
 
 .DialogueBottom {
