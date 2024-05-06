@@ -1,45 +1,51 @@
-import { useEffect, useState, useRef } from "react"
+import { useEffect, useState, useCallback, useRef } from "react";
 
 export const useTypewriter = (text, speed = 50, callback) => {
 	const [displayText, setDisplayText] = useState('');
-	const idx = useRef(0);
-	const displayTextRef = useRef('');
-	const [finishEarly, setFinishEarly] = useState(false);
+	const [finished, setFinished] = useState(false);
+	const [prevText, setPrevText] = useState(text);
 	const callbackCalled = useRef(false);
 
+	// Reset needed state when the text changes.
 	useEffect(() => {
-		const typingInterval = setInterval(() => {
-			if(finishEarly) {
-				displayTextRef.current = text;
-				setDisplayText(text);
-				clearInterval(typingInterval);
-				if (!callbackCalled.current && callback) {
-					callback(); 
-					callbackCalled.current = true;
+		if (prevText !== text) {
+			setDisplayText('');
+			setFinished(false);
+			setPrevText(text);
+			callbackCalled.current = false; 
+		}
+	}, [text, prevText]);
+
+	useEffect(() => {
+		let typingInterval;
+		if (!finished) {
+			typingInterval = setInterval(() => {
+				if (displayText.length < text.length) {
+					setDisplayText(prev => prev + text.charAt(prev.length));
+				} else { // finished typing naturally.
+					clearInterval(typingInterval);
+					if (!callbackCalled.current && callback) {
+						callbackCalled.current = true; 
+						setFinished(true);
+						callback();
+					}
 				}
-			} else if (idx.current < text.length) {
-				displayTextRef.current += text.charAt(idx.current);
-				setDisplayText(displayTextRef.current);
-				idx.current += 1;
-			} else {
-				clearInterval(typingInterval)
-				if (!callbackCalled.current && callback) {
-					callback();
-					callbackCalled.current = true; 
-				}
+			}, speed);
+		}
+
+		return () => clearInterval(typingInterval);
+	}, [text, speed, finished, callback]);
+
+	const finishText = useCallback(() => {
+		if (!finished) {
+			setDisplayText(text);
+			setFinished(true);
+			if (!callbackCalled.current && callback) {
+				callbackCalled.current = true; 
+				callback();
 			}
-		}, speed);
-
-		return () => {
-			clearInterval(typingInterval);
 		}
-	}, [text, speed, callback]);
+	}, [text, finished, callback]);
 
-	const finishText = () => {
-		if(!finishEarly) {
-			setFinishEarly(true);
-		}
-	}
-
-	return [displayText, finishText];
-}
+	return [displayText, finishText, finished];
+};

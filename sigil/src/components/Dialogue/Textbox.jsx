@@ -1,21 +1,25 @@
 import '~/styles/Dialogue/Textbox.css'
-import { useTypewriter } from '../../hooks/useTypewriter';
-import { useState } from 'react';
+import { useTypewriter } from '~/hooks/useTypewriter';
+import { useEffect, useState } from 'react';
+import { lorem2 } from '~/static/constants/placeholders';
 
 const Textbox = ({text}) => {
 
-    const [currentText, setCurrentText] = useState(text);
+    // Todo, proper capped incrementer for the text.
+    const [currentText, setCurrentText] = useState(text[0]);
 
     // TODO: hoist all this up to Dialogue, because we need to link the buttons to this shit 
     // + we need the handlers for sprites etc.
-    const [displayText, finishText] = useTypewriter(currentText, 50, () => {console.log("typing finished"); setLineFinished(true)});
+    //useTypewriter returns displayText, an updating text for the effect
+    //then finishText, a method to trigger an instant "finish" of text, skipping the typewriter effect
+    // lastly, useTypewriter returns an updating bool based on if the text has finished typing out.
+    const [displayText, finishText, lineFinished] = useTypewriter(currentText, 50, () => {console.log("typing finished")});
 
-    const [lineFinished, setLineFinished] = useState(false);
+    //console.log(lineFinished);
 
     const advanceText = () => {
         if(lineFinished) {
-            console.log("Please god")
-            setCurrentText("IM GOING INSANE");
+            setCurrentText(lorem2);
         } else {
             finishText();
         }
