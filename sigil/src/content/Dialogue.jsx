@@ -11,11 +11,16 @@ import { useTypewriter } from "../hooks/useTypewriter";
 const placeholderText = [lorem, lorem2];
 
 async function loadDialogue(fileName) {
+    try {
     console.log(fileName);
-    const response = await import(`~/static/dialogue/${fileName}.json`)
+    const response = await import(`../static/dialogue/${fileName}.json`)
     console.log(`file loaded, ref below for object`)
     console.log(response.default);
     return response.default;
+    } catch (error) {
+        console.error('Failed fuck my life:', error);
+        return null;
+    }
 }
 
 const Dialogue = ({ file }) => {
