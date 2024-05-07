@@ -1,17 +1,36 @@
 import '~/styles/Dialogue/ChoiceContainer.css'
 
-const ChoiceContainer = ({ choices, canContinue }) => {
+const ChoiceContainer = ({ choices, canContinue, choiceCallback }) => {
+
+    const renderChoices = () => {
+        let rtn = [];
+
+        if (choices == null) {
+           for(let i = 0; i < 4; i++) {
+                rtn.push(<a key={`disabledchoice-${i}`} className='unavailable'>---</a>)
+           }
+        } else {
+            rtn = choices.map((choice, index) => (
+                <a key={`dialoguechoice-${index}`} onClick={() => choiceCallback(choice)}>
+                    {choice}
+                </a>
+            ))
+        }
+
+        return rtn;
+    }
+
 
     return (
         <div className="ChoiceContainer">
-        {choices.map((choice, index) => (
-            <a key={`dialoguechoice-${index}`}>
-                {choice}
-            </a>
-        ))}
-        <a className={canContinue ? 'continueAvailable' : 'continueUnavailable'}>CONTINUE</a>
-        
-        
+            {renderChoices()}
+            <a
+                className={canContinue ? 'continueAvailable' : 'continueUnavailable'}
+                onClick={() => { if (canContinue) { choiceCallback('continue') } }}
+            >
+                CONTINUE</a>
+
+
         </div>
     )
 }

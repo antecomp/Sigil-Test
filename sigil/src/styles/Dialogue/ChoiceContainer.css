@@ -31,7 +31,7 @@
 
   
   
-  .ChoiceContainer .continueUnavailable { /*Targeting a class w/ this*/
+  .ChoiceContainer .continueUnavailable, .ChoiceContainer .unavailable { /*Targeting a class w/ this*/
     --fgc: grey;
   }
 
