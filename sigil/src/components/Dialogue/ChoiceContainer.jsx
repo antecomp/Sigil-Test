@@ -10,6 +10,7 @@ const ChoiceContainer = ({ choices, canContinue, choiceCallback }) => {
                 rtn.push(<a key={`disabledchoice-${i}`} className='unavailable'>---</a>)
            }
         } else {
+            // Todo: if <4 choices, also render in some blanks like above.
             rtn = choices.map((choice, index) => (
                 <a key={`dialoguechoice-${index}`} onClick={() => choiceCallback(choice)}>
                     {choice}

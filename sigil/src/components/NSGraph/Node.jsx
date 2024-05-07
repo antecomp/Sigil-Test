@@ -46,7 +46,7 @@ const Node = ({id, children, dx = 1, dy = 1, parentCoords = {x:0, y:0}, action, 
 				// eventually we will want to invoke any secondary calls that autoconnect may have (within actionProps)
 			break;
 			case 'dialogue':
-				Modal.open(Dialogue, {...modalDefaults}); 
+				Modal.open(Dialogue, {...modalDefaults, file: `DialogueTest`}); 
 				//cutscene window, pass needed info (hi)
 			break;
 			// We can add any new type of interaction here...
