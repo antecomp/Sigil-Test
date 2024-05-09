@@ -12,14 +12,14 @@ const placeholderText = [lorem, lorem2];
 
 async function loadDialogue(fileName) {
     try {
-    console.log(fileName);
-    const response = await import(`../static/dialogue/${fileName}.json`)
-    console.log(`file loaded, ref below for object`)
-    console.log(response.default);
-    return response.default;
+        console.log(fileName);
+        const response = await import(`../static/dialogue/${fileName}.json`)
+        console.log(`file loaded, ref below for object`)
+        console.log(response.default);
+        return response.default;
     } catch (error) {
-        console.error('Failed fuck my life:', error);
-        return null;
+        console.error('Failed to load dialog file:', error);
+        return null; // TODO: replace this with an actually valuable return we can create an error modal with. (Or throw an error we can handle similarly.)
     }
 }
 
@@ -32,9 +32,15 @@ const Dialogue = ({ file }) => {
         loadDialogue(file).then(dia => setDialogue(dia));
     }, [file])
 
+    // callback triggered by useTypewriter when it's done with the current line/text input.
+    const onTextFinished = () => {
+        console.log("Finished Typing");
+        setChoices(choicesPlaceholder);
+    }
+
     // For typewriter/textbox piece;
     const [currentText, setCurrentText] = useState(placeholderText[0])
-    const [displayText, finishText, lineFinished] = useTypewriter(currentText, 50, () => { console.log("finished typing"); setChoices(choicesPlaceholder); });
+    const [displayText, finishText, lineFinished] = useTypewriter(currentText, 50, onTextFinished);
     const [canContinue, setCanContinue] = useState(true);
 
     /* Of course this logic will be changed to the dynamic dialogue JSON loader slop :) */

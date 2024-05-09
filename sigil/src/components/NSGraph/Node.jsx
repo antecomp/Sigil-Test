@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import React, {useCallback, useContext} from "react";
+import React, { useCallback, useContext } from "react";
 import Modal from '~/components/Modal/Modal'
 import BattleCon from "~/content/BattleCon";
 import { actionMap } from "~/static/actionMap";
@@ -8,7 +8,7 @@ import { nodeConstants } from "~/static/constants/nodeConstants";
 import { ConfirmationContext } from "~/content/NSGraph";
 import Dialogue from "../../content/Dialogue";
 
-const Node = ({id, children, dx = 1, dy = 1, parentCoords = {x:0, y:0}, action, actionProps, postConnect}) => {
+const Node = ({ id, children, dx = 1, dy = 1, parentCoords = { x: 0, y: 0 }, action, actionProps, postConnect }) => {
 
 	const triggerNewConfirmation = useContext(ConfirmationContext).triggerNewConfirmation;
 
@@ -40,20 +40,20 @@ const Node = ({id, children, dx = 1, dy = 1, parentCoords = {x:0, y:0}, action, 
 		// Should this be passed to some sort of global handler? Feels like we'd just be dealing with forwarding more callback hell just to get psuedo-single responsibility...?
 		switch (action) {
 			case 'battle':
-				Modal.open(BattleCon, {...modalDefaults, fileName: actionProps.fileName});
-			break;
+				Modal.open(BattleCon, { ...modalDefaults, fileName: actionProps.fileName });
+				break;
 			case 'autoconnect':
 				// eventually we will want to invoke any secondary calls that autoconnect may have (within actionProps)
-			break;
+				break;
 			case 'dialogue':
-				Modal.open(Dialogue, {...modalDefaults, file: `DialogueTest`}); 
+				Modal.open(Dialogue, { ...modalDefaults, file: `DialogueTest` });
 				//cutscene window, pass needed info (hi)
-			break;
-			// We can add any new type of interaction here...
+				break;
+			// We can add any new type of interaction here... (Ofc if it gets too complex we'll wanna map it instead.)
 		}
 
 		// again, this should be moved / only invoked when we actually "connect" eventually. Don't useEffect it for the love of dæmons
-		if (postConnect) {postConnect()}
+		if (postConnect) { postConnect() }
 
 	}
 
@@ -66,7 +66,7 @@ const Node = ({id, children, dx = 1, dy = 1, parentCoords = {x:0, y:0}, action, 
 	}
 
 	const handleClick = useCallback(() => {
-		if(expandedNodes.includes(id)) { // collapse, delete later as the node will expansions will be perm in the future.
+		if (expandedNodes.includes(id)) { // collapse, delete later as the node will expansions will be perm in the future.
 			removeNode(id)
 		} else { // expand (AKA "Connect")
 			triggerNewConfirmation(acceptCall, denyCall, `${id}`, details)
@@ -85,11 +85,11 @@ const Node = ({id, children, dx = 1, dy = 1, parentCoords = {x:0, y:0}, action, 
 		y1: parentCoords.y + radius,
 		y2: coords.y
 	};
-	
+
 	// Draw line on sides when we explicitely tell the graph to not go down.
-	if(dy <= 0) {
+	if (dy <= 0) {
 		linePoints.y1 = parentCoords.y
-		linePoints.x1 = parentCoords.x + Math.sign(dx)*radius
+		linePoints.x1 = parentCoords.x + Math.sign(dx) * radius
 	}
 
 	const expandedLeaf = isNodeExpanded && (children == null);
@@ -102,18 +102,18 @@ const Node = ({id, children, dx = 1, dy = 1, parentCoords = {x:0, y:0}, action, 
 
 	return (
 		<>
-		{!(id == "kestrel:home") && 
-			<line 
-				x1={linePoints.x1} 
-				x2={linePoints.x2} 
-				y1={linePoints.y1} 
-				y2={linePoints.y2} 
-				strokeWidth={1} 
-				className={nodeClass}
-			/>
-		}
+			{!(id == "kestrel:home") &&
+				<line
+					x1={linePoints.x1}
+					x2={linePoints.x2}
+					y1={linePoints.y1}
+					y2={linePoints.y2}
+					strokeWidth={1}
+					className={nodeClass}
+				/>
+			}
 			<g>
-				<circle 
+				<circle
 					r={radius}
 					cx={coords.x}
 					cy={coords.y}

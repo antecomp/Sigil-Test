@@ -6,9 +6,9 @@ const ChoiceContainer = ({ choices, canContinue, choiceCallback }) => {
         let rtn = [];
 
         if (choices == null) {
-           for(let i = 0; i < 4; i++) {
+            for (let i = 0; i < 4; i++) {
                 rtn.push(<a key={`disabledchoice-${i}`} className='unavailable'>---</a>)
-           }
+            }
         } else {
             // Todo: if <4 choices, also render in some blanks like above.
             rtn = choices.map((choice, index) => (

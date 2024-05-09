@@ -1,10 +1,10 @@
 // Based on (stolen from) https://yoavik.com/snippets/mouse-tracker
-import {useRef, useEffect} from 'react';
+import { useRef, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import cls from 'classnames'
 import '~/styles/extra/tooltip.css'
 
-export const Tooltip = ({children, className, offset = {x: 0, y:0}, delay}) => {
+export const Tooltip = ({ children, className, offset = { x: 0, y: 0 }, delay }) => {
 	const element = useRef({});
 
 	useEffect(() => {
@@ -17,18 +17,18 @@ export const Tooltip = ({children, className, offset = {x: 0, y:0}, delay}) => {
 		}
 
 		document.addEventListener('mousemove', handler);
-		
+
 		return () => document.removeEventListener('mousemove', handler);
 
 	}, [offset.x, offset.y]);
 
-	// note that the delay aspect is handles in CSS (because im nefarious like that)
+	// note that the delay aspect is handled in CSS (because im nefarious like that)
 	// this passes a CSS var with the delay time.
-	// passing no delay prop makes it default to ???? and that just gives it 0 delay at all lol.
+	// passing no delay prop makes it ???? and that just gives it 0 delay at all lol.
 	return createPortal(
-		<div className={cls('tooltip', className)} ref={element} style={{"--delay": `${delay}`}}> 
+		<div className={cls('tooltip', className)} ref={element} style={{ "--delay": `${delay}` }}>
 			{children}
 		</div>
-	, document.body
+		, document.body
 	);
 }

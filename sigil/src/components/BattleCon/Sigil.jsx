@@ -68,7 +68,7 @@ const Sigil = ({ radius, playerRuneData }) => {
 			setLines(prevLines => [...prevLines, newLine]);
 		}
 
-		if(clickedRunes.length == runesPerMove) {
+		if (clickedRunes.length == runesPerMove) {
 			markFinishedAndSubmit();
 		}
 
@@ -88,7 +88,7 @@ const Sigil = ({ radius, playerRuneData }) => {
 		setClickedRunes([]);
 		setLines([]);
 		// likely unneeded because the useEffect would eval to this anyway
-		setFinished(false); 
+		setFinished(false);
 	}
 
 
@@ -118,7 +118,7 @@ const Sigil = ({ radius, playerRuneData }) => {
 		);
 	}
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	return (
 		<>

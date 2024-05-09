@@ -1,5 +1,5 @@
-import React, {useState, useCallback, createContext} from "react";
-import {root} from '~/static/NSMap';
+import React, { useState, useCallback, createContext } from "react";
+import { root } from '~/static/NSMap';
 import '~/styles/NSGraph/NSGraph.css'
 import Node from "../components/NSGraph/Node";
 import { TransformWrapper, TransformComponent, useControls } from "react-zoom-pan-pinch";
@@ -24,20 +24,20 @@ const NSGraph = () => {
 
 
 	const Controls = () => {
-		const {resetTransform } = useControls();
-	  
+		const { resetTransform } = useControls();
+
 		return (
-		  <div className="ZoomTools">
-			<button onClick={() => resetTransform()}>y</button>
-		  </div>
+			<div className="ZoomTools">
+				<button onClick={() => resetTransform()}>y</button>
+			</div>
 		);
-	  };
+	};
 
 
 	return (
 		<div className="NSTracerWindow">
 
-			{ showConfirmation &&
+			{showConfirmation &&
 				<ConnectionPrompt
 					acceptMethod={nodeAcceptMethod}
 					denyMethod={nodeDenyMethod}
@@ -48,20 +48,20 @@ const NSGraph = () => {
 			}
 
 			<TransformWrapper
-				 initialScale={1}
-				 initialPositionX={0}
-				 initialPositionY={0}
-				 doubleClick={{disabled: true}}
+				initialScale={1}
+				initialPositionX={0}
+				initialPositionY={0}
+				doubleClick={{ disabled: true }}
 			>
 				<Controls />
 				<TransformComponent>
-				<ConfirmationContext.Provider value={{ triggerNewConfirmation }}>
-					<svg className="NSGraph" width={7650} height={450}>
-						<Node 
-							{...root}  
-						/>
-					</svg>
-				</ConfirmationContext.Provider>
+					<ConfirmationContext.Provider value={{ triggerNewConfirmation }}>
+						<svg className="NSGraph" width={7650} height={450}>
+							<Node
+								{...root}
+							/>
+						</svg>
+					</ConfirmationContext.Provider>
 				</TransformComponent>
 			</TransformWrapper>
 		</div>
