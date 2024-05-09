@@ -27,11 +27,20 @@ const Dialogue = ({ file }) => {
     const modal = useModalWindow();
 
     // load dialogue on load / fileName change.
-    const [dialogue, setDialogue] = useState(null);
+    const [dialogueCollection, setDialogueCollection] = useState(null);
     useEffect(() => {
-        loadDialogue(file).then(dia => setDialogue(dia));
-    }, [file])
+        (async () => {
+            try {
+                let dia = await loadDialogue(file);
+                setDialogueCollection(dia);
+                setCurrentDialogueObject(dia[dia['root']['next']]);
 
+            } catch (err) {
+                console.error(err);
+            }
+        }
+        )()
+    }, [file])
 
     // For typewriter/textbox piece  ------------------------------------------------------------------;
 
@@ -39,17 +48,20 @@ const Dialogue = ({ file }) => {
     const onTextFinished = () => {
         console.log("Finished Typing");
         setChoices(choicesPlaceholder);
+
+        setCurrentDialogueObject(dialogueCollection[currentDialogueObject['next']]);
     }
 
+
     // You will most likely want a currentDialogueObject or whatever here for the JSON parsing...
-    const [currentText, setCurrentText] = useState(placeholderText[0])
-    const [displayText, skipTypingAnim, isLineFinished] = useTypewriter(currentText, 50, onTextFinished);
+    const [currentDialogueObject, setCurrentDialogueObject] = useState({text: {en: ""}}) //Placeholder for hook initialization (Prevent read from null error) ((voodoo gaming)).
+    const [displayText, skipTypingAnim, isLineFinished] = useTypewriter(currentDialogueObject['text'].en, 50, onTextFinished);
     const [canContinue, setCanContinue] = useState(true); // May be a placeholder depending on the logic is implemented. Feel free to change as needed.
 
     /* !!! PLACEHOLDER LOGIC. DON'T ACTUALLY IMPLEMENT LIKE THIS LOL. USE CALLBACK INSTEAD !!! */
     const advanceText = () => {
         if (isLineFinished) {
-            setCurrentText(placeholderText[1])
+            
         } else {
             skipTypingAnim()
         }
@@ -74,7 +86,7 @@ const Dialogue = ({ file }) => {
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-    if (!dialogue) {
+    if (!dialogueCollection) {
         return <div>Loading...</div>;
     }
 
