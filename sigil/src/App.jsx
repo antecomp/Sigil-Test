@@ -18,7 +18,7 @@ const TestNotif = ({closeToast, toastProps, title, msg}) => {
       <img src={svalinn} alt="" />
       <div>
         <h3>{title}</h3>
-        What do you think of the new interface buddy?
+        {msg}
       </div>
     </div>
   )
@@ -44,6 +44,9 @@ function App() {
       transition: Slide,
     }); */
     toast(<TestNotif {...PlaceHolderNotifProps} />, {transition: Slide})
+    setTimeout(() => {
+      toast(<TestNotif {...PlaceHolderNotifProps} msg="I personally think it looks good :)" />, {transition: Slide})
+    }, 1500)
   }
 
   return (
