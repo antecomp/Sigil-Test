@@ -32,29 +32,33 @@ const Dialogue = ({ file }) => {
         loadDialogue(file).then(dia => setDialogue(dia));
     }, [file])
 
+
+    // For typewriter/textbox piece  ------------------------------------------------------------------;
+
     // callback triggered by useTypewriter when it's done with the current line/text input.
     const onTextFinished = () => {
         console.log("Finished Typing");
         setChoices(choicesPlaceholder);
     }
 
-    // For typewriter/textbox piece;
+    // You will most likely want a currentDialogueObject or whatever here for the JSON parsing...
     const [currentText, setCurrentText] = useState(placeholderText[0])
-    const [displayText, finishText, lineFinished] = useTypewriter(currentText, 50, onTextFinished);
-    const [canContinue, setCanContinue] = useState(true);
+    const [displayText, skipTypingAnim, isLineFinished] = useTypewriter(currentText, 50, onTextFinished);
+    const [canContinue, setCanContinue] = useState(true); // May be a placeholder depending on the logic is implemented. Feel free to change as needed.
 
-    /* Of course this logic will be changed to the dynamic dialogue JSON loader slop :) */
+    /* !!! PLACEHOLDER LOGIC. DON'T ACTUALLY IMPLEMENT LIKE THIS LOL. USE CALLBACK INSTEAD !!! */
     const advanceText = () => {
-        if (lineFinished) {
+        if (isLineFinished) {
             setCurrentText(placeholderText[1])
         } else {
-            finishText()
+            skipTypingAnim()
         }
     }
 
+    // ------------------------------------------------------------------------------------------------;
 
     // For choices
-    const [choices, setChoices] = useState(null);
+    const [choices, setChoices] = useState(null); // May be a placeholder depending on the logic is implemented. Feel free to change as needed.
     const choicesPlaceholder = ['Yes', 'No', 'Maybe', '...'];
 
     const choiceCallback = (action) => {
@@ -65,6 +69,10 @@ const Dialogue = ({ file }) => {
             console.log(action)
         }
     }
+
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
     if (!dialogue) {
         return <div>Loading...</div>;
