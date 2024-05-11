@@ -10,44 +10,30 @@ import { ToastContainer, toast, Slide } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import '~/styles/extra/Toastify.css'
 
-import svalinn from '~/artwork/usrhead.png'
+import OverlayScene from './content/OverlayScene';
+import ExampleNotif from './components/Toast/exampleNotif';
 
-const TestNotif = ({closeToast, toastProps, title, msg}) => {
-  return (
-    <div className='messageNotif'>
-      <img src={svalinn} alt="" />
-      <div>
-        <h3>{title}</h3>
-        {msg}
-      </div>
-    </div>
-  )
-}
+import svalinn from '~/artwork/usrhead.png'
 
 const PlaceHolderNotifProps = {
   title: "Svalinn",
-  msg: "What do you think of the new interface buddy?"
+  msg: "Wow this interface looks pretty bland right now.",
+  img: svalinn
+}
+
+// Placeholder, exported as a test for other callers to invoke.
+export const notify = () => {
+  toast(<ExampleNotif {...PlaceHolderNotifProps} />, {transition: Slide})
+  setTimeout(() => {
+    toast(<ExampleNotif {...PlaceHolderNotifProps} msg="Games clearly far from being done :^)" />, {transition: Slide})
+  }, 1500)
 }
 
 function App() {
 
-  const notify = () => {
-    /*toast(<TestNotif />, {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: false,
-      progress: undefined,
-      theme: "dark",
-      transition: Slide,
-    }); */
-    toast(<TestNotif {...PlaceHolderNotifProps} />, {transition: Slide})
-    setTimeout(() => {
-      toast(<TestNotif {...PlaceHolderNotifProps} msg="I personally think it looks good :)" />, {transition: Slide})
-    }, 1500)
-  }
+  useEffect(() => {
+    Modal.open(OverlayScene, {closable: false, file: `exampleScene`} )
+  }, [])
 
   return (
     <>
@@ -58,6 +44,7 @@ function App() {
 
         <NSGraph />
         <button onClick={notify}>Notify!</button>
+        {/*  <button onClick={() => Modal.open(OverlayScene, {closable: false, file: `exampleScene`} )}>launch scene</button> */}
       </div>
       <ModalContainer controller={Modal} />
       <ToastContainer
