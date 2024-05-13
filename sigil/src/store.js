@@ -9,6 +9,11 @@ const NSGraphStoreDefault = {
 }
 
 
+// Todo, slice this up, with partialize for persisting whats needd.
+// Ref: https://docs.pmnd.rs/zustand/guides/slices-pattern
+// https://github.com/pmndrs/zustand/blob/main/docs/integrations/persisting-store-data.md#partialize
+
+
 const useNSGraphStore = create(
 	persist(
 		(set) => ({

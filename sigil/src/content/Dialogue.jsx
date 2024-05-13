@@ -4,9 +4,9 @@ import chatIcon from '~/assets/ui/chaticon.png';
 import '~/styles/Dialogue/Dialogue.css';
 import '~/styles/Dialogue/Textbox.css'
 import { useModalWindow } from "react-modal-global";
-import { lorem, lorem2 } from "../static/constants/placeholders";
+import { lorem, lorem2 } from "~/static/constants/placeholders";
 import { useEffect, useState } from "react";
-import { useTypewriter } from "../hooks/useTypewriter";
+import { useTypewriter } from "~/hooks/useTypewriter";
 
 const placeholderText = [lorem, lorem2];
 

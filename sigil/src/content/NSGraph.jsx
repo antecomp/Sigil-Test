@@ -11,14 +11,14 @@ const NSGraph = () => {
 
 	const [nodeAcceptMethod, setNodeAcceptMethod] = useState(null)
 	const [nodeDenyMethod, setNodeDenyMethod] = useState(null)
-	const [showConfirmation, setShowConfirmation] = useState('');
+	const [connectDest, setConnectDest] = useState('');
 	const [confDetails, setConfDetails] = useState({})
 
 
 	const triggerNewConfirmation = useCallback((acceptMethod, denyMethod, dest, details) => {
 		setNodeAcceptMethod(() => acceptMethod);
 		setNodeDenyMethod(() => denyMethod);
-		setShowConfirmation(dest);
+		setConnectDest(dest);
 		setConfDetails(details);
 	})
 
@@ -37,12 +37,12 @@ const NSGraph = () => {
 	return (
 		<div className="NSTracerWindow">
 
-			{showConfirmation &&
+			{connectDest &&
 				<ConnectionPrompt
 					acceptMethod={nodeAcceptMethod}
 					denyMethod={nodeDenyMethod}
-					showStateSttr={setShowConfirmation}
-					dest={showConfirmation}
+					showStateSttr={setConnectDest}
+					dest={connectDest}
 					details={confDetails}
 				/>
 			}
