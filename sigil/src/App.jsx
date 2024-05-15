@@ -33,9 +33,9 @@ function App() {
 
   // Automatically trigger the game intro scene
   // TODO: Set a cookie or maybe just a zustand state thingy to mark this scene as seen.
-  /* useEffect(() => {
+  useEffect(() => {
     Modal.open(OverlayScene, {closable: false, file: `exampleScene`} )
-  }, []) */
+  }, [])
 
   return (
     <>

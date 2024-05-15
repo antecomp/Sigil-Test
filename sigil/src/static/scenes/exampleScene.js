@@ -1,6 +1,5 @@
 import { toast, Slide } from "react-toastify";
 import { notify } from "../../App";
-import ExampleNotif from "../../components/Toast/exampleNotif";
 
 const fuckOff = () => {
 	toast('SYSTEM: VI-LINK neural connection established.', {transition: Slide})
@@ -8,7 +7,7 @@ const fuckOff = () => {
 
 const exampleScene = [
 	{
-		text: `"I found a strange cache today"`,
+		text: `"I found a strange cache today."`,
 		color: "yellow"
 	},
 	{
@@ -33,7 +32,7 @@ const exampleScene = [
 		color: "yellow"
 	},
 	{
-		text: `"How is that even possible?"`,
+		text: `"how is that even possible?"`,
 		color: "teal"
 	},
 	{
