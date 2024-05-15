@@ -1,0 +1,28 @@
+.Window {
+	width: fit-content;
+	max-width: 100ch;
+	background: var(--bgc);
+	outline: solid var(--outlinec) 5px;
+}
+
+.Window .handle {
+	background: url('~/assets/ui/titlebar_texture.png');
+	border-bottom: solid 1px var(--fgc);
+	height: 11px;
+	cursor: grab;
+	margin-top: 5px;
+	border: solid 1px white;
+}
+
+.Window .content {
+	padding: 10px;
+	border: solid 1px var(--fgc);
+}
+
+.react-draggable-dragging .handle {
+	cursor: grabbing;
+}
+
+.Window img {
+	pointer-events: none;
+}

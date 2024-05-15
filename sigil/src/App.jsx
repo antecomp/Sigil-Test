@@ -14,6 +14,7 @@ import OverlayScene from './content/OverlayScene';
 import ExampleNotif from './components/Toast/exampleNotif';
 
 import svalinn from '~/artwork/usrhead.png'
+import TestWindow from './components/Tests/TestWindow';
 
 const PlaceHolderNotifProps = {
   title: "Svalinn",
@@ -31,9 +32,9 @@ export const notify = () => {
 
 function App() {
 
-  useEffect(() => {
+  /* useEffect(() => {
     Modal.open(OverlayScene, {closable: false, file: `exampleScene`} )
-  }, [])
+  }, []) */
 
   return (
     <>
@@ -44,6 +45,12 @@ function App() {
 
         <NSGraph />
         <button onClick={notify}>Notify!</button>
+
+
+        <TestWindow/>
+
+
+
         {/*  <button onClick={() => Modal.open(OverlayScene, {closable: false, file: `exampleScene`} )}>launch scene</button> */}
       </div>
       <ModalContainer controller={Modal} />
