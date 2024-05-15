@@ -47,9 +47,23 @@ const Dialogue = ({ file }) => {
     // callback triggered by useTypewriter when it's done with the current line/text input.
     const onTextFinished = () => {
         console.log("Finished Typing");
-        setChoices(choicesPlaceholder);
 
-        setCurrentDialogueObject(dialogueCollection[currentDialogueObject['next']]);
+        if (currentDialogueObject['choices'])
+            {
+                console.log('There are choices!')
+                const choicesArray = currentDialogueObject['choices']
+                choicesArray.forEach(choice => {
+                    console.log(choice['text'].en)
+                });
+                setChoices(choicesArray.map((choice) => {return choice['text'].en}))
+            }
+            else
+            {
+                console.log('There are no choices!')
+                setChoices(null);
+                setCurrentDialogueObject(dialogueCollection[currentDialogueObject['next']]);
+            }
+        
     }
 
 
@@ -71,14 +85,15 @@ const Dialogue = ({ file }) => {
 
     // For choices
     const [choices, setChoices] = useState(null); // May be a placeholder depending on the logic is implemented. Feel free to change as needed.
+    // Change this to be the entire choice object, not just the choice name array. Then move the string mapping responsibilities into ChoiceContainer.
     const choicesPlaceholder = ['Yes', 'No', 'Maybe', '...'];
 
-    const choiceCallback = (action) => {
+    const choiceCallback = (choiceName, nextUUID) => {
         // This is an (obvious) placeholder since I have to wait until we figure out how to parse the dialogue JSON events and whatnot.
-        if (action === "continue") {
+        if (choiceName === "continue") {
             advanceText();
         } else {
-            console.log(action)
+            console.log(choiceName) //do this shit next :) (note to mori from mori)
         }
     }
 
