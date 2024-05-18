@@ -51,17 +51,17 @@ const Dialogue = ({ file }) => {
         if (currentDialogueObject['choices'])
             {
                 console.log('There are choices!')
+                setCanContinue(false)
                 const choicesArray = currentDialogueObject['choices']
                 choicesArray.forEach(choice => {
                     console.log(choice['text'].en)
                 });
-                setChoices(choicesArray.map((choice) => {return choice['text'].en}))
+                setChoices(choicesArray)
             }
             else
             {
                 console.log('There are no choices!')
                 setChoices(null);
-                setCurrentDialogueObject(dialogueCollection[currentDialogueObject['next']]);
             }
         
     }
@@ -72,10 +72,20 @@ const Dialogue = ({ file }) => {
     const [displayText, skipTypingAnim, isLineFinished] = useTypewriter(currentDialogueObject['text'].en, 50, onTextFinished);
     const [canContinue, setCanContinue] = useState(true); // May be a placeholder depending on the logic is implemented. Feel free to change as needed.
 
-    /* !!! PLACEHOLDER LOGIC. DON'T ACTUALLY IMPLEMENT LIKE THIS LOL. USE CALLBACK INSTEAD !!! */
     const advanceText = () => {
-        if (isLineFinished) {
-            
+        
+
+        if (isLineFinished && canContinue) {
+            setCurrentDialogueObject(dialogueCollection[currentDialogueObject['next']]);
+
+            if (!dialogueCollection[currentDialogueObject['next']] && !dialogueCollection[currentDialogueObject['choices']]) //remember: we will need another guard case for conditionals
+                {
+                    console.log('should crash')
+                    setCurrentDialogueObject({text: {en: ""}})
+                    modal.close()
+                    return
+                }
+
         } else {
             skipTypingAnim()
         }
@@ -90,10 +100,17 @@ const Dialogue = ({ file }) => {
 
     const choiceCallback = (choiceName, nextUUID) => {
         // This is an (obvious) placeholder since I have to wait until we figure out how to parse the dialogue JSON events and whatnot.
+        setChoices(null)
+        setCanContinue(true)
         if (choiceName === "continue") {
-            advanceText();
+            advanceText()
+            
+            
         } else {
             console.log(choiceName) //do this shit next :) (note to mori from mori)
+            console.log(nextUUID)
+            setCurrentDialogueObject(dialogueCollection[nextUUID])
+        
         }
     }
 

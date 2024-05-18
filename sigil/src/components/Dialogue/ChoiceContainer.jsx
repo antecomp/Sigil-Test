@@ -12,8 +12,8 @@ const ChoiceContainer = ({ choices, canContinue, choiceCallback }) => {
         } else {
             // Todo: if <4 choices, also render in some blanks like above.
             rtn = choices.map((choice, index) => (
-                <a key={`dialoguechoice-${index}`} onClick={() => choiceCallback(choice)}> {/*note from mori to mori, maybe have it also return the 'next'*/}
-                    {choice}
+                <a key={`dialoguechoice-${index}`} onClick={() => choiceCallback(choice['text'].en, choice['next'])}> {/*note from mori to mori, maybe have it also return the 'next'*/}
+                    {choice['text'].en}
                 </a>
             ))
         }
