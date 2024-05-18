@@ -14,6 +14,17 @@ import OverlayScene from './content/OverlayScene';
 import ExampleNotif from './components/Toast/exampleNotif';
 
 import svalinn from '~/artwork/usrhead.png'
+import WindowContainer from './components/Window/WindowContainer';
+
+
+
+
+
+
+
+
+
+
 
 const PlaceHolderNotifProps = {
   title: "Svalinn",
@@ -33,9 +44,9 @@ function App() {
 
   // Automatically trigger the game intro scene
   // TODO: Set a cookie or maybe just a zustand state thingy to mark this scene as seen.
-  useEffect(() => {
+  /* useEffect(() => {
     Modal.open(OverlayScene, {closable: false, file: `exampleScene`} )
-  }, [])
+  }, []) */
 
   return (
     <>
@@ -46,6 +57,23 @@ function App() {
 
         <NSGraph />
         <button onClick={notify}>Notify!</button>
+
+       
+      <div id="desktop">
+      <WindowContainer>
+        <h1 style={{'fontWeight': 'normal'}}>Wha-oh shitty library alert! Look out!</h1>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi deleniti quisquam rem distinctio voluptatum ad nobis dolore blanditiis nemo aliquam unde saepe aut, quia non sunt expedita corrupti ducimus iusto.
+      </WindowContainer>
+      </div>
+
+
+
+
+
+
+
+
+
         {/*  <button onClick={() => Modal.open(OverlayScene, {closable: false, file: `exampleScene`} )}>launch scene</button> */}
       </div>
       <ModalContainer controller={Modal} />

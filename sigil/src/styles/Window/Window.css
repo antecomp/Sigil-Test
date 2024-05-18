@@ -1,0 +1,43 @@
+.window {
+	pointer-events: all;
+}
+
+.window .handle {
+	user-select: none;
+	background: url('~/assets/ui/titlebar_texture.png');
+	height: 11px;
+	border: solid 1px var(--fgc);
+	display: flex;
+}
+
+.window-footer {
+	display: flex;
+	height: 8px;
+}
+
+.window-footer img {
+	position: relative;
+}
+
+.window-footer span {
+	border-bottom: 1px solid var(--fgc);
+	transform: translateY(-2px);
+	background-color: black;
+}
+
+.handle span, .window-footer span {
+	flex-grow: 1;
+}
+
+.handle img, .window-footer img {
+	-webkit-user-drag: none;
+	user-select: none;
+}
+
+.window-content {
+	border: solid 1px var(--fgc);
+	border-top: 0;
+	border-bottom: 0;
+	padding: 15px;
+	background-color: var(--bgc);
+}
