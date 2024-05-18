@@ -1,13 +1,14 @@
-.window {
+.simple-window {
 	pointer-events: all;
 	position: fixed;
 }
 
-.window .handle {
+.simple-window .handle {
 	user-select: none;
 	background: url('~/assets/ui/titlebar_texture.png');
 	height: 11px;
 	border: solid 1px var(--fgc);
+	border-bottom: none;
 	display: flex;
 }
 
@@ -20,12 +21,6 @@
 	position: relative;
 }
 
-.window-footer span {
-	border-bottom: 1px solid var(--fgc);
-	transform: translateY(-2px);
-	background-color: black;
-}
-
 .handle span, .window-footer span {
 	flex-grow: 1;
 }
@@ -35,14 +30,11 @@
 	user-select: none;
 }
 
-.window-content {
-	border: solid 1px var(--fgc);
-	border-top: 0;
-	border-bottom: 0;
-	padding: 15px;
+.simple-window  .window-content {
 	background-color: var(--bgc);
-	overflow: auto;
-	max-height: inherit;
+	width: fit-content;
+	padding: 0;
+	border: none;
 }
 
 .window-content img {

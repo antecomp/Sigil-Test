@@ -14,13 +14,8 @@ import OverlayScene from './content/OverlayScene';
 import ExampleNotif from './components/Toast/exampleNotif';
 
 import svalinn from '~/artwork/usrhead.png'
-import WindowContainer from './components/Window/WindowContainer';
 
-
-
-
-
-
+import Desktop from '~/content/Desktop';
 
 
 
@@ -34,9 +29,9 @@ const PlaceHolderNotifProps = {
 
 // Placeholder, exported as a test for other callers to invoke.
 export const notify = () => {
-  toast(<ExampleNotif {...PlaceHolderNotifProps} />, {transition: Slide})
+  toast(<ExampleNotif {...PlaceHolderNotifProps} />, { transition: Slide })
   setTimeout(() => {
-    toast(<ExampleNotif {...PlaceHolderNotifProps} msg="Games clearly far from being done :^)" />, {transition: Slide})
+    toast(<ExampleNotif {...PlaceHolderNotifProps} msg="Games clearly far from being done :^)" />, { transition: Slide })
   }, 1500)
 }
 
@@ -55,17 +50,12 @@ function App() {
 
         {/* <BattleCon/> */}
 
-        <NSGraph />
+        
         <button onClick={notify}>Notify!</button>
 
-       
-      <div id="desktop">
-      <WindowContainer>
-        <h1 style={{'fontWeight': 'normal'}}>Wha-oh shitty library alert! Look out!</h1>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi deleniti quisquam rem distinctio voluptatum ad nobis dolore blanditiis nemo aliquam unde saepe aut, quia non sunt expedita corrupti ducimus iusto.
-      </WindowContainer>
-      </div>
 
+
+        <Desktop/>
 
 
 
@@ -89,7 +79,7 @@ function App() {
         pauseOnHover
         theme="dark"
         closeButton={false}
-        transition: Slide
+        transition:Slide
       />
     </>
   );

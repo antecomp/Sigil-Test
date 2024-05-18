@@ -16,6 +16,7 @@
     text-align: center;
     position: relative;
     cursor: pointer;
+    background-color: var(--bgc);
   }
 
   .ChoiceContainer a:hover::after {

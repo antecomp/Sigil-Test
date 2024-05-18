@@ -42,6 +42,10 @@
 	margin: 0;
 }
 
+html {
+	image-rendering: pixelated;
+}
+
 body {
 	background-color: var(--bgc);
 	font-family: "main"; /* to serve as a "default" */
@@ -70,4 +74,8 @@ body {
 	width: 100vw;
 	pointer-events: none;
 	z-index: 1;
+}
+
+#desktop * {
+	pointer-events: all;
 }
