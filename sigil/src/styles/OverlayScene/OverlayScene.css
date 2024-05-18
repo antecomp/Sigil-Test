@@ -13,4 +13,11 @@
 .OverlayScene p {
 	max-width: 50ch;
 	text-align: center;
+	transition: opacity var(--fadeDuration) ease;
+	opacity: 1;
+}
+
+.OverlayScene p.fadeOut {
+	transition: opacity var(--fadeDuration) ease;
+	opacity: 0;
 }

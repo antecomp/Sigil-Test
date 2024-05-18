@@ -14,6 +14,8 @@ async function loadScene(file) {
 	}
 }
 
+const fadeDuration = 250; // in ms, move to constants file later.
+
 const OverlayScene = ({file}) => {
 	const modal = useModalWindow()
 
@@ -36,6 +38,8 @@ const OverlayScene = ({file}) => {
 
 	// TODO/FIX in useTypewriter: for some reason you have to click twice on the first text to advance if the callback is null, but an empty function body works??
 	const [displayText, skipTypingAnim, isLineFinished] = useTypewriter(currentFrame.text, 50, () => {});
+
+	const [fadeText, setFadeText] = useState(false); // used for the animation of fading the text before advancing.
 	
 	// used to toggle between skipTypingAnim() and loading next functions based on if we're typing.
 	// isLineFinished is adequate for this because we're just changing a condition, no complicated callback logic needed.
@@ -53,8 +57,13 @@ const OverlayScene = ({file}) => {
 				return;
 			}
 
-			sceneIndex.current += 1; 
-			setCurrentFrame(scene[sceneIndex.current]);
+			setFadeText(true) 
+			setTimeout(() => {
+				sceneIndex.current += 1; 
+				setCurrentFrame(scene[sceneIndex.current]);
+				setFadeText(false)
+			}, fadeDuration);
+	
 
 		} else {
 			skipTypingAnim();
@@ -62,8 +71,8 @@ const OverlayScene = ({file}) => {
 	}
 
 	return (
-		<div className="OverlayScene" onClick={handleAdvance}>
-			<p style={{...currentFrame.style, color: (currentFrame.color)}}>
+		<div className="OverlayScene" onClick={!fadeText ? handleAdvance : () => {/* do nothing */}}>
+			<p style={{...currentFrame.style, color: (currentFrame.color), '--fadeDuration': `${fadeDuration * 2}ms`}} className={fadeText ? 'fadeOut' : ''}>
 				{displayText}
 			</p>
 		</div>
