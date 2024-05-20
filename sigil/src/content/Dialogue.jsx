@@ -48,14 +48,27 @@ const Dialogue = ({ file }) => {
     const onTextFinished = () => {
         console.log("Finished Typing");
 
+        if (currentDialogueObject['conditions'])
+            {
+                console.log('There are conditions!')
+                const conditionalArray = currentDialogueObject['conditions']
+
+                conditionalArray.forEach((conditional, index) => {
+                    
+                    if (evaluateConditional(conditional))
+                        {
+                            setCurrentDialogueObject(dialogueCollection[conditional['next']])
+                        }
+                })
+
+                
+            }
+
         if (currentDialogueObject['choices'])
             {
                 console.log('There are choices!')
                 setCanContinue(false)
                 const choicesArray = currentDialogueObject['choices']
-                choicesArray.forEach(choice => {
-                    console.log(choice['text'].en)
-                });
                 setChoices(choicesArray)
             }
             else
@@ -66,6 +79,30 @@ const Dialogue = ({ file }) => {
         
     }
 
+    const extractConditionalName = (conditionalObj) => {
+        let rtn
+        Object.keys(conditionalObj).forEach(key => {
+            if (key && key !== 'parent' && key !== 'next') {
+                rtn = key
+            }
+        })
+        return rtn
+    }
+
+    const evaluateConditional = (condition) => {
+        console.log('beginning choice evaluation!')
+        let conditionalName = extractConditionalName(condition)
+        if (condition[conditionalName]['type'] == 'boolean')
+            {
+                switch (condition[conditionalName]['operator']) {
+                    case 'equal':
+                        return condition[conditionalName]['value'] == true
+                    case 'whar':
+                        return 'wuat'
+                }
+            }
+    
+    }
 
     // You will most likely want a currentDialogueObject or whatever here for the JSON parsing...
     const [currentDialogueObject, setCurrentDialogueObject] = useState({text: {en: ""}}) //Placeholder for hook initialization (Prevent read from null error) ((voodoo gaming)).
