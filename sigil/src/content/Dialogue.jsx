@@ -7,7 +7,7 @@ import { useModalWindow } from "react-modal-global";
 import { lorem, lorem2 } from "../static/constants/placeholders";
 import { useEffect, useState } from "react";
 import { useTypewriter } from "../hooks/useTypewriter";
-
+import dialogueTestConditionMap from "../static/dialogue/DialogueConditions";
 const placeholderText = [lorem, lorem2];
 
 async function loadDialogue(fileName) {
@@ -25,6 +25,7 @@ async function loadDialogue(fileName) {
 
 const Dialogue = ({ file }) => {
     const modal = useModalWindow();
+    
 
     // load dialogue on load / fileName change.
     const [dialogueCollection, setDialogueCollection] = useState(null);
@@ -47,15 +48,15 @@ const Dialogue = ({ file }) => {
     // callback triggered by useTypewriter when it's done with the current line/text input.
     const onTextFinished = () => {
         console.log("Finished Typing");
-
         if (currentDialogueObject['conditions'])
             {
                 console.log('There are conditions!')
                 const conditionalArray = currentDialogueObject['conditions']
 
-                conditionalArray.forEach((conditional, index) => {
-                    
-                    if (evaluateConditional(conditional))
+                const dialogueConditionKey = extractConditionalName(conditionalArray[0])
+                const actualValue = dialogueTestConditionMap[dialogueConditionKey]() //evaluate once + i hate you
+                conditionalArray.forEach((conditional) => {
+                    if (actualValue == conditional[dialogueConditionKey]['value'])
                         {
                             setCurrentDialogueObject(dialogueCollection[conditional['next']])
                         }
@@ -89,20 +90,6 @@ const Dialogue = ({ file }) => {
         return rtn
     }
 
-    const evaluateConditional = (condition) => {
-        console.log('beginning choice evaluation!')
-        let conditionalName = extractConditionalName(condition)
-        if (condition[conditionalName]['type'] == 'boolean')
-            {
-                switch (condition[conditionalName]['operator']) {
-                    case 'equal':
-                        return condition[conditionalName]['value'] == true
-                    case 'whar':
-                        return 'wuat'
-                }
-            }
-    
-    }
 
     // You will most likely want a currentDialogueObject or whatever here for the JSON parsing...
     const [currentDialogueObject, setCurrentDialogueObject] = useState({text: {en: ""}}) //Placeholder for hook initialization (Prevent read from null error) ((voodoo gaming)).
